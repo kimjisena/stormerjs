@@ -10,7 +10,7 @@ export default class Point extends Shape {
     this.y = y;
   }
 
-  draw () {
+  render () {
     const ctx = this.surface._surface;
     // save Canvas state
     ctx.save();
@@ -20,10 +20,11 @@ export default class Point extends Shape {
       ctx[key] = value;
     }
 
-    // draw point
+    // draw point (1 pixel)
     ctx.beginPath();
     ctx.moveTo(this.x, this.y);
-    ctx.closePath();
+    ctx.lineTo(this.x + 1, this.y + 1);
+    ctx.stroke();
 
     // restore Canvas state
     ctx.restore();
