@@ -1,1 +1,1 @@
-export { test } from "./test";
+export { StormRenderer } from 'renderer/renderer';
