@@ -8,7 +8,7 @@ import Ellipse from "./Ellipse";
 import Curve from "./Curve";
 import Bezier from "./Bezier";
 
-export {
+const Shapes = {
   Point, 
   Line, 
   Rectangle, 
@@ -19,3 +19,5 @@ export {
   Curve, 
   Bezier,
 }
+
+export default Shapes;
