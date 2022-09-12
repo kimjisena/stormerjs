@@ -3,24 +3,25 @@ import Surface from "./surface";
 export default class Shape {
   surface: Surface;
   config: Map<string, any>;
-  #status: boolean = true;
+  #shouldUpdate: boolean = true;
+  #shouldFill: boolean = false;
   
   configure (prop: string, value: any) {
     // configure shape-wise properties e.g: fillStyle
     this.config.set(prop, value);
     
     // set status flag
-    this.#status = true;
+    this.#shouldUpdate = true;
   }
 
-  set status (value: boolean) {
-    this.#status = value;
+  set shouldUpdate (value: boolean) {
+    this.#shouldUpdate = value;
   }
 
-  get status () {
-    return this.#status;
+  get shouldUpdate () {
+    return this.#shouldUpdate;
   }
-  
+
   render () {
     const ctx = this.surface._surface;
     // save Canvas state
@@ -37,7 +38,15 @@ export default class Shape {
     ctx.restore();
 
     // reset status flag
-    this.#status = false;
+    this.#shouldUpdate = false;
+  }
+
+  set shouldFill (value: boolean) {
+    this.#shouldFill = value;
+  }
+
+  get shouldFill () {
+    return this.#shouldFill;
   }
 
   translate () {

@@ -25,12 +25,16 @@ export default class Triangle extends Shape {
     ctx.lineTo(this.vectors.vec2.x, this.vectors.vec2.y);
     ctx.lineTo(this.vectors.vec3.x, this.vectors.vec3.y);
     ctx.closePath();
-    ctx.fill();
+    if (this.shouldFill) {
+      ctx.fill();
+    } else {
+      ctx.stroke();
+    }
 
     // restore Canvas state
     ctx.restore();
 
     // reset status flage
-    this.status = false;
+    this.shouldUpdate = false;
   }
 }

@@ -34,6 +34,6 @@ export default class Line extends Shape{
     ctx.restore();
 
     // reset status flage
-    this.status = false;
+    this.shouldUpdate = false;
   }
 }

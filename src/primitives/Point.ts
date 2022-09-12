@@ -29,6 +29,6 @@ export default class Point extends Shape {
     ctx.restore();
 
     // reset status flage
-    this.status = false;
+    this.shouldUpdate = false;
   }
 }

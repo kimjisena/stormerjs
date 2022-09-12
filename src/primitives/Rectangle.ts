@@ -26,13 +26,16 @@ export default class Rectangle extends Shape {
 
     // draw rectangle
     ctx.rect(this.origin.x, this.origin.y, this.width, this.height)
-    ctx.fill();
-
+    if (this.shouldFill) {
+      ctx.fill();
+    } else {
+      ctx.stroke();
+    }
 
     // restore Canvas state
     ctx.restore();
 
     // reset status flage
-    this.status = false;
+    this.shouldUpdate = false;
   }
 }
