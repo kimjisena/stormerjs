@@ -13,10 +13,14 @@ export default class Shape {
     this.#status = true;
   }
 
-  shouldUpdate () {
-    return this.#status;
+  set status (value: boolean) {
+    this.#status = value;
   }
 
+  get status () {
+    return this.#status;
+  }
+  
   render () {
     const ctx = this.surface._surface;
     // save Canvas state

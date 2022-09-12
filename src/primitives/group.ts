@@ -21,7 +21,7 @@ export default class Group {
   }
 
   shouldUpdate () {
-    return this.shapes.some(shape => shape.shouldUpdate());
+    return this.shapes.some(shape => shape.status);
   }
 
   renderShapes () {

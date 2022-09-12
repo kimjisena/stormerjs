@@ -1,13 +1,12 @@
 import Shape from "./Shape";
+import Vector from "./Vector";
 
 export default class Point extends Shape {
-  x: number;
-  y: number;
+  vector: Vector;
 
   constructor (x: number, y: number) {
     super();
-    this.x = x;
-    this.y = y;
+    this.vector = new Vector(x, y);
   }
 
   render () {
@@ -22,14 +21,14 @@ export default class Point extends Shape {
 
     // draw point (1 pixel)
     ctx.beginPath();
-    ctx.moveTo(this.x, this.y);
-    ctx.lineTo(this.x + 1, this.y + 1);
+    ctx.moveTo(this.vector.x, this.vector.y);
+    ctx.lineTo(this.vector.x + 1, this.vector.y + 1);
     ctx.stroke();
 
     // restore Canvas state
     ctx.restore();
 
-    // call draw on the surface
-    this.surface.renderGroups();
+    // reset status flage
+    this.status = false;
   }
 }
