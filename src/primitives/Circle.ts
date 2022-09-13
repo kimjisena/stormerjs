@@ -1,10 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { Vector } from "./types";
-import AbstractShape from "./AbstractShape";
+import { Vector, AbstractShape, Surface } from "./types";
 
 export default class Circle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Circle);
+
+  surface: Surface;
   center: Vector;
   radius: number;
 
@@ -13,7 +14,11 @@ export default class Circle implements AbstractShape {
     this.radius = radius;
   }
 
-  render () {
+  render (): void {
     this.#renderer.render();
+  }
+
+  shouldUpdate (): boolean {
+    return this.#renderer.shouldUpdate;
   }
 }

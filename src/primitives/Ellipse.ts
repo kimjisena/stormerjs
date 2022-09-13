@@ -1,10 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import AbstractShape from "./AbstractShape";
-import { Vector } from "./types";
+import { Vector, AbstractShape, Surface } from "./types";
 
 export default class Ellipse implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Ellipse);
+
+  surface: Surface;
   center: Vector;
   width: number;
   height: number;
@@ -15,7 +16,11 @@ export default class Ellipse implements AbstractShape {
     this.height = height;
   }
 
-  render () {
+  render (): void {
     this.#renderer.render();
+  }
+
+  shouldUpdate (): boolean {
+    return this.#renderer.shouldUpdate;
   }
 }

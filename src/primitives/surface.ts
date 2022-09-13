@@ -1,11 +1,11 @@
-import Group from "./group";
+import { Group } from "./types";
 
 export default class Surface {
   groups: Array<Group>;
-  _surface: CanvasRenderingContext2D;
+  _: CanvasRenderingContext2D;
 
   constructor (canvas: HTMLCanvasElement) {
-    this._surface = canvas.getContext('2d');
+    this._ = canvas.getContext('2d');
   }
 
   renderGroups () {
@@ -15,7 +15,7 @@ export default class Surface {
     }
 
     // save Canvas state
-    this._surface.save();
+    this._.save();
 
     // instruct groups to render shapes
     for (let group of this.groups) {
@@ -23,6 +23,6 @@ export default class Surface {
     }
     
     // restore Canvas state
-    this._surface.restore();
+    this._.restore();
   }
 }

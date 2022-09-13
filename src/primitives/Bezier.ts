@@ -1,10 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import AbstractShape from "./AbstractShape";
-import { Vector } from "./types";
+import { Vector, AbstractShape, Surface } from "./types";
 
 export default class Bezier implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Bezier);
+
+  surface: Surface;
   anchorOne: Vector;
   anchorTwo: Vector;
   from: Vector;
@@ -17,7 +18,11 @@ export default class Bezier implements AbstractShape {
     this.to = to;
   }
 
-  render () {
+  render (): void {
     this.#renderer.render();
+  }
+
+  shouldUpdate (): boolean {
+    return this.#renderer.shouldUpdate;
   }
 }

@@ -1,10 +1,11 @@
 import { StormRenderer } from "../renderer/renderer";
 import StormTypes from "../utils/symbols";
-import { Vector } from "./types";
-import AbstractShape from "./AbstractShape";
+import { Vector, AbstractShape, Surface } from "./types";
 
 export default class Curve implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Curve);
+
+  surface: Surface;
   anchor: Vector;
   from: Vector;
   to: Vector;
@@ -15,7 +16,11 @@ export default class Curve implements AbstractShape {
     this.to = to;
   }
 
-  render () {
+  render (): void {
     this.#renderer.render();
+  }
+
+  shouldUpdate (): boolean {
+    return this.#renderer.shouldUpdate;
   }
 }

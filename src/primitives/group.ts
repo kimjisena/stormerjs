@@ -1,10 +1,9 @@
-import Surface from "./surface";
-import AbstractShape from "./AbstractShape";
+import { Surface, AbstractShape } from "./types";
 
 export default class Group {
   shapes: Array<AbstractShape>;
   surface: Surface;
-  config: Map<string, any>
+  config: Map<string, any>;
 
   constructor (surface: Surface) {
     this.surface = surface;
@@ -21,12 +20,12 @@ export default class Group {
   }
 
   shouldUpdate () {
-    return this.shapes.some(shape => shape.shouldUpdate);
+    return this.shapes.some(shape => shape.shouldUpdate());
   }
 
   renderShapes () {
     
-    const ctx = this.surface._surface;
+    const ctx = this.surface._;
 
     // save Canvas state
     ctx.save();

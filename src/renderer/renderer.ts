@@ -1,7 +1,6 @@
-import Surface from "../primitives/surface";
 import Vector from "../primitives/Vector";
 import StormTypes from "../utils/symbols";
-import AbstractShape from "../primitives/AbstractShape";
+import { AbstractShape } from "../primitives/types";
 
 class StormRenderer {
   #type: symbol;
@@ -11,7 +10,6 @@ class StormRenderer {
   #rotateBy: number = 0;
   #scaleBy: Vector = new Vector(1, 1);
 
-  surface: Surface;
   shape: AbstractShape;
   config: Map<string, any>;
   transformOrder: Array<number> = new Array(3).fill(null);
@@ -48,7 +46,7 @@ class StormRenderer {
   }
 
   render () {
-    const ctx = this.surface._surface;
+    const ctx = this.shape.surface._;
     // save Canvas state
     ctx.save();
 

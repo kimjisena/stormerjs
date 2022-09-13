@@ -7,6 +7,7 @@ import Arc from "./Arc";
 import Ellipse from "./Ellipse";
 import Curve from "./Curve";
 import Bezier from "./Bezier";
+import Vector from "./Vector";
 
 const Shapes = {
   Point, 
@@ -20,4 +21,5 @@ const Shapes = {
   Bezier,
 };
 
+export { Vector };
 export default Shapes;

@@ -1,10 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import type AbstractShape from "./AbstractShape";
-import { LineVectors } from "./types";
+import { AbstractShape, Surface, LineVectors } from "./types";
 
 export default class Line implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Line);
+
+  surface: Surface;
   lineVectors: LineVectors;
 
   constructor (vectors: LineVectors) {
@@ -14,7 +15,11 @@ export default class Line implements AbstractShape {
     this.lineVectors = vectors;
   }
 
-  render () {
+  render (): void {
     this.#renderer.render();
+  }
+
+  shouldUpdate (): boolean {
+    return this.#renderer.shouldUpdate;
   }
 }
