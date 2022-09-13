@@ -2,18 +2,16 @@ import Vector from "../primitives/Vector";
 import StormTypes from "../utils/symbols";
 import { AbstractShape } from "../primitives/types";
 import Props from "../utils/props";
+import Transforms from "../utils/trasform";
 
 class StormRenderer {
   #type: symbol;
   #shouldUpdate: boolean = true;
   #shouldFill: boolean = false;
-  #translateTo: Vector = new Vector(0, 0);
-  #rotateBy: number = 0;
-  #scaleBy: Vector = new Vector(1, 1);
   #props: Props = new Props();
+  #transforms: Transforms = new Transforms();
 
   shape: AbstractShape;
-  transformOrder: Array<number> = new Array(3).fill(null);
 
   constructor (type: symbol) {
     this.#type = type;
@@ -23,27 +21,20 @@ class StormRenderer {
     return this.#props;
   }
 
+  getTransformsObject (): Transforms {
+    return this.#transforms;
+  }
+
   degToRad (deg: number) {
     return (Math.PI / 180) * deg
   }
 
-  translate () {
-    // schedule translation
-    this.transformOrder.push(1);
-  }
-
-  rotate () {
-    // schedule rotation
-    this.transformOrder.push(2);
-  }
-
-  scale () {
-    // schedule scaling
-    this.transformOrder.push(3);
-  }
-
   render () {
     const ctx = this.shape.surface._;
+    // where art thou Rene Descartes
+    ctx.translate(0, ctx.canvas.height);
+    ctx.scale(1, -1);
+
     // save Canvas state
     ctx.save();
 
@@ -53,21 +44,22 @@ class StormRenderer {
     }
 
     // set the matrix transform
-    this.transformOrder.forEach(transform => {
-      switch (transform) {
-        case 1:
-          ctx.translate(this.translateTo.x, this.translateTo.y);
+    this.#transforms.transformActions.forEach(transform => {
+      switch (transform.type) {
+        case StormTypes.Translate:
+          ctx.translate(transform.payload.x, transform.payload.y);
           break;
-        case 2:
-          ctx.rotate(this.rotateBy);
+        case StormTypes.Rotate:
+          ctx.rotate(transform.payload);
           break;
-        case 3:
-          ctx.scale(this.scaleBy.x, this.scaleBy.y);
+        case StormTypes.Scale:
+          ctx.scale(transform.payload.x, transform.payload.y);
           break;
         default:
           break;
       }
     });
+
 
     // TODO: Render shape
     switch(this.#type) {
@@ -237,6 +229,9 @@ class StormRenderer {
 
     // reset status flag
     this.#shouldUpdate = false;
+
+    // clear the transformation matrix
+    this.#transforms.transformActions = [];
   }
 
   set shouldUpdate (value: boolean) {
@@ -255,32 +250,6 @@ class StormRenderer {
     return this.#shouldFill;
   }
 
-  set translateTo (to: Vector) {
-    this.#translateTo = to;
-    this.#shouldUpdate = true;
-  }
-
-  get translateTo () {
-    return this.#translateTo;
-  }
-
-  set rotateBy (by: number) {
-    this.#rotateBy = this.degToRad(by);
-    this.#shouldUpdate = true;
-  }
-
-  get rotateBy () {
-    return this.#rotateBy;
-  }
-
-  set scaleBy (by: Vector) {
-    this.#scaleBy = by;
-    this.#shouldUpdate = true;
-  }
-
-  get scaleBy () {
-    return this.#scaleBy;
-  }
 }
 
 export { StormRenderer }

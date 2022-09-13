@@ -27,6 +27,13 @@ interface PropTypes {
   wordSpacing (value: string): PropTypes;
 }
 
+interface TransformsType {
+  degToRad (deg: number): number;
+  translate (x: number, y: number): TransformsType;
+  rotate (angle: number): TransformsType;
+  scale (x: number, y: number): TransformsType;
+}
+
 interface Vector {
   x: number;
   y: number;
@@ -46,16 +53,20 @@ namespace Shapes {
     vector: Vector;
 
     attach (surface: Surface): Point;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Line {
     lineVectors: LineVectors;
 
     attach (surface: Surface): Line;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Rectangle {
@@ -64,16 +75,20 @@ namespace Shapes {
     height: number;
 
     attach (surface: Surface): Rectangle;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Triangle {
     triangleVectors: TriangleVectors;
 
     attach (surface: Surface): Triangle;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Ellipse {
@@ -82,8 +97,10 @@ namespace Shapes {
     height: number;
 
     attach (surface: Surface): Ellipse;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Circle {
@@ -91,8 +108,10 @@ namespace Shapes {
     radius: number;
 
     attach (surface: Surface): Circle;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Arc {
@@ -103,8 +122,10 @@ namespace Shapes {
     counterclockwise: boolean;
 
     attach (surface: Surface): Arc;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Curve {
@@ -113,8 +134,10 @@ namespace Shapes {
     to: Vector;
 
     attach (surface: Surface): Curve;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 
   export interface Bezier {
@@ -124,8 +147,10 @@ namespace Shapes {
     to: Vector;
 
     attach (surface: Surface): Bezier;
-    render (): void;
+    render (fill?: boolean): void;
     shouldUpdate (): boolean;
+    getPropsObj (): PropTypes;
+    getTransformsObj (): TransformsType;
   }
 }
 
@@ -172,9 +197,10 @@ interface AbstractShape {
 
   // All shapes must implement these methods
   attach (surface: Surface): AbstractShape;
-  render (): void;
+  render (fill?: boolean): void;
   shouldUpdate (): boolean;
   getPropsObj (): PropTypes;
+  getTransformsObj (): TransformsType;
 }
 
 interface Group {
@@ -197,6 +223,8 @@ interface Surface {
 
 export { 
   PropTypes,
+  TransformsType,
+
   Vector, 
   LineVectors, 
   TriangleVectors,
