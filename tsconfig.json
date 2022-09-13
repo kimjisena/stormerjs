@@ -3,7 +3,7 @@
     "module": "ESNext",
     "target": "es2015",
     "declaration": true,
-    "outDir": "../storm-test/dist"
+    "outDir": "./storm-test/dist"
   },
   "include": [
     "src/**/*"

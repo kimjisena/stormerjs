@@ -19,10 +19,16 @@ export default class Bezier implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  render (): void {
-    this.#renderer.render();
+  attach (surface: Surface): void {
+    this.surface = surface;
   }
 
+  render (): void {
+    if (!this.surface) {
+      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    }
+    this.#renderer.render();
+  }
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
   }

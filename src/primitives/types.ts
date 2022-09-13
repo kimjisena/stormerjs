@@ -105,6 +105,7 @@ interface AbstractShape {
   anchorTwo?: Vector;
 
   // All shapes must implement these methods
+  attach (surface: Surface): void;
   render (): void;
   shouldUpdate (): boolean;
 }

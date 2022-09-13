@@ -12,8 +12,15 @@ export default class Triangle implements AbstractShape {
     this.triangleVectors = vectors;
     this.#renderer.shape = this;
   }
+  
+  attach (surface: Surface): void {
+    this.surface = surface;
+  }
 
   render (): void {
+    if (!this.surface) {
+      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    }
     this.#renderer.render();
   }
 
