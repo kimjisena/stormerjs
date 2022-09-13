@@ -1,6 +1,7 @@
 interface Vector {
   x: number;
   y: number;
+
 }
 
 type LineVectors = Array<Vector>;
@@ -12,36 +13,36 @@ interface TriangleVectors {
 }
 
 namespace Shapes {
-  interface Point {
+  export interface Point {
     vector: Vector;
   }
 
-  interface Line {
-    vectors: LineVectors,
+  export interface Line {
+    lineVectors: LineVectors,
   }
 
-  interface Rectangle {
+  export interface Rectangle {
     origin: Vector;
     width: number;
     height: number;
   }
 
-  interface Triangle {
-    vectors: TriangleVectors,
+  export interface Triangle {
+    triangleVectors: TriangleVectors,
   }
 
-  interface Ellipse {
+  export interface Ellipse {
     center: Vector;
     width: number;
     height: number;
   }
 
-  interface Circle {
+  export interface Circle {
     center: Vector;
     radius: number;
   }
 
-  interface Arc {
+  export interface Arc {
     center: Vector;
     radius: number;
     startAngle: number;
@@ -49,13 +50,13 @@ namespace Shapes {
     direction: boolean;
   }
 
-  interface Curve {
+  export interface Curve {
     anchor: Vector;
     from: Vector;
     to: Vector;
   }
 
-  interface Bezier {
+  export interface Bezier {
     anchorOne: Vector;
     anchorTwo: Vector;
     from: Vector;

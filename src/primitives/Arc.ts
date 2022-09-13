@@ -12,7 +12,13 @@ export default class Arc implements AbstractShape {
   endAngle: number;
   direction: boolean;
 
-  constructor (center: Vector, radius: number, startAngle: number, endAngle: number, direction?: boolean) {
+  constructor (
+    center: Vector, 
+    radius: number, 
+    startAngle: number, 
+    endAngle: number, 
+    direction?: boolean
+  ) {
     this.center = center;
     this.radius = radius;
     this.startAngle = startAngle;

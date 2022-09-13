@@ -1,17 +1,38 @@
 import Surface from "./primitives/surface";
 import Group from "./primitives/group";
 import Shapes, { Vector } from "./primitives/shapes";
-import { createLineVectors, createTriangleVectors } from "./utils/helpers";
+import { 
+  createLineVectors, 
+  createTriangleVectors, 
+  createLine,
+  createRectangle,
+  createTriangle,
+  createCircle,
+  createEllipse,
+  createArc,
+  createCurve,
+  createBezier
+} from "./utils/helpers";
 
 const Storm =  { 
   Surface,
   Group,
   Shapes,
   Vector,
+};
 
-  // helper functions
+export {
   createLineVectors,
   createTriangleVectors,
-};
+
+  createLine,
+  createRectangle,
+  createTriangle,
+  createCircle,
+  createEllipse,
+  createArc,
+  createCurve,
+  createBezier,
+}
 
 export default Storm;
