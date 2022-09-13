@@ -1,12 +1,13 @@
 import Vector from "./Vector";
 import Shape from "./Shape";
+import StormTypes from "../utils/symbols";
 
 export default class Circle extends Shape {
   center: Vector;
   radius: number;
 
   constructor (center: Vector, radius: number) {
-    super();
+    super(StormTypes.Circle);
 
     this.center = center;
     this.radius = radius;

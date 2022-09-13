@@ -1,5 +1,6 @@
 import Point from "./Point";
 import Shape from "./Shape";
+import StormTypes from "../utils/symbols";
 
 export default class Curve extends Shape {
   anchor: Point;
@@ -7,7 +8,7 @@ export default class Curve extends Shape {
   to: Point;
 
   constructor (anchor: Point, from: Point, to: Point) {
-    super();
+    super(StormTypes.Curve);
     
     this.anchor = anchor;
     this.from = from;

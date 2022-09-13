@@ -1,5 +1,6 @@
 import Point from "./Point";
 import Shape from "./Shape";
+import StormTypes from "../utils/symbols";
 
 export default class Bezier extends Shape {
   anchorOne: Point;
@@ -8,7 +9,7 @@ export default class Bezier extends Shape {
   to: Point;
 
   constructor (anchorOne: Point, anchorTwo: Point, from: Point, to: Point) {
-    super();
+    super(StormTypes.Bezier);
     
     this.anchorOne = anchorOne;
     this.anchorTwo = anchorTwo;

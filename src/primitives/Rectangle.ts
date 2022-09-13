@@ -1,5 +1,6 @@
 import Vector from "./Vector";
 import Shape from "./Shape";
+import StormTypes from "../utils/symbols";
 
 export default class Rectangle extends Shape {
   origin: Vector;
@@ -7,7 +8,7 @@ export default class Rectangle extends Shape {
   height: number;
 
   constructor (origin: Vector, width: number, height: number) {
-    super();
+    super(StormTypes.Rectangle);
     
     this.origin = origin;
     this.width = width;

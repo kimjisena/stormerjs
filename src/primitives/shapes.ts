@@ -18,6 +18,8 @@ const Shapes = {
   Ellipse, 
   Curve, 
   Bezier,
-}
+};
+
+export type ShapeType = Point | Line | Rectangle | Triangle | Circle | Arc | Ellipse | Curve | Bezier
 
 export default Shapes;
