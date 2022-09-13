@@ -13,6 +13,7 @@ export default class Line implements AbstractShape {
       throw new Error("At least two vectors are required to draw a line.");
     }
     this.lineVectors = vectors;
+    this.#renderer.shape = this;
   }
 
   render (): void {

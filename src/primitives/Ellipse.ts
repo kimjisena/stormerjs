@@ -14,6 +14,7 @@ export default class Ellipse implements AbstractShape {
     this.center = center;
     this.width = width;
     this.height = height;
+    this.#renderer.shape = this;
   }
 
   render (): void {

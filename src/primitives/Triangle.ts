@@ -10,6 +10,7 @@ export default class Triangle implements AbstractShape {
 
   constructor (vectors: TriangleVectors) {
     this.triangleVectors = vectors;
+    this.#renderer.shape = this;
   }
 
   render (): void {

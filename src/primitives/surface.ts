@@ -6,6 +6,7 @@ export default class Surface {
 
   constructor (canvas: HTMLCanvasElement) {
     this._ = canvas.getContext('2d');
+    this.groups = [];
   }
 
   renderGroups () {

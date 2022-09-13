@@ -12,6 +12,7 @@ export default class Circle implements AbstractShape {
   constructor (center: Vector, radius: number) {
     this.center = center;
     this.radius = radius;
+    this.#renderer.shape = this;
   }
 
   render (): void {

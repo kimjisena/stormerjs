@@ -6,7 +6,10 @@ export default class Group {
   config: Map<string, any>;
 
   constructor (surface: Surface) {
+    surface.groups.push(this);
     this.surface = surface;
+    this.shapes = [];
+    this.config = new Map();
   }
 
   configure (prop: string, value: any) {

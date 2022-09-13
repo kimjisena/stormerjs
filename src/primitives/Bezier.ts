@@ -16,6 +16,7 @@ export default class Bezier implements AbstractShape {
     this.anchorTwo = anchorTwo;
     this.from = from;
     this.to = to;
+    this.#renderer.shape = this;
   }
 
   render (): void {

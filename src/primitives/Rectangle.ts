@@ -14,6 +14,7 @@ export default class Rectangle implements AbstractShape {
     this.origin = origin;
     this.width = width;
     this.height = height;
+    this.#renderer.shape = this;
   }
 
   render (): void {

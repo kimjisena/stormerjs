@@ -18,6 +18,7 @@ export default class Arc implements AbstractShape {
     this.startAngle = startAngle;
     this.endAngle = endAngle;
     this.direction = direction;
+    this.#renderer.shape = this;
   }
 
   render (): void {

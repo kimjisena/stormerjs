@@ -14,6 +14,7 @@ export default class Curve implements AbstractShape {
     this.anchor = anchor;
     this.from = from;
     this.to = to;
+    this.#renderer.shape = this;
   }
 
   render (): void {

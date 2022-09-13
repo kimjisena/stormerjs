@@ -12,6 +12,7 @@ export default class Point implements AbstractShape {
   constructor (x: number, y: number) {
     this.vector = new Vector(x, y);
     this.#renderer.shape = this;
+    this.#renderer.shape = this;
   }
 
   render (): void {

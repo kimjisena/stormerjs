@@ -3,7 +3,7 @@ import Group from "./primitives/group";
 import Shapes, { Vector } from "./primitives/shapes";
 
 const Storm =  { 
-  Surface, 
+  Surface,
   Group,
   Shapes,
   Vector

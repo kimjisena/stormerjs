@@ -16,6 +16,7 @@ class StormRenderer {
 
   constructor (type: symbol) {
     this.#type = type;
+    this.config = new Map();
   }
 
   configure (prop: string, value: any) {
