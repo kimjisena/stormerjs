@@ -1,6 +1,7 @@
 import Vector from "../primitives/Vector";
 import StormTypes from "../utils/symbols";
 import { AbstractShape } from "../primitives/types";
+import Props from "../utils/props";
 
 class StormRenderer {
   #type: symbol;
@@ -9,22 +10,17 @@ class StormRenderer {
   #translateTo: Vector = new Vector(0, 0);
   #rotateBy: number = 0;
   #scaleBy: Vector = new Vector(1, 1);
+  #props: Props = new Props();
 
   shape: AbstractShape;
-  config: Map<string, any>;
   transformOrder: Array<number> = new Array(3).fill(null);
 
   constructor (type: symbol) {
     this.#type = type;
-    this.config = new Map();
   }
 
-  configure (prop: string, value: any) {
-    // configure shape-wise properties e.g: fillStyle
-    this.config.set(prop, value);
-    
-    // set status flag
-    this.#shouldUpdate = true;
+  getPropsObject (): Props {
+    return this.#props;
   }
 
   degToRad (deg: number) {
@@ -51,8 +47,8 @@ class StormRenderer {
     // save Canvas state
     ctx.save();
 
-    // apply config e.g. fillStyle
-    for (let [key, value] of this.config) {
+    // apply props e.g. fillStyle
+    for (let [key, value] of this.#props.propsMap) {
       ctx[key] = value;
     }
 
@@ -187,7 +183,7 @@ class StormRenderer {
           this.shape.center.y, 
           this.shape.radius, 
           start, end, 
-          this.shape.direction
+          this.shape.counterclockwise
         );
         if (this.shouldFill) {
           ctx.fill();

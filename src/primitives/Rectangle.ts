@@ -1,6 +1,6 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { Vector, AbstractShape, Surface } from "./types";
+import { Vector, AbstractShape, Surface, PropTypes } from "./types";
 
 export default class Rectangle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Rectangle);
@@ -31,5 +31,9 @@ export default class Rectangle implements AbstractShape {
 
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

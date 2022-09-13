@@ -1,6 +1,6 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { Vector, AbstractShape, Surface } from "./types";
+import { Vector, AbstractShape, Surface, PropTypes } from "./types";
 
 export default class Circle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Circle);
@@ -29,5 +29,9 @@ export default class Circle implements AbstractShape {
 
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

@@ -1,6 +1,6 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { Vector, AbstractShape, Surface } from "./types";
+import { Vector, AbstractShape, Surface, PropTypes } from "./types";
 
 export default class Arc implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Arc);
@@ -10,20 +10,20 @@ export default class Arc implements AbstractShape {
   radius: number;
   startAngle: number;
   endAngle: number;
-  direction: boolean;
+  counterclockwise: boolean;
 
   constructor (
     center: Vector, 
     radius: number, 
     startAngle: number, 
     endAngle: number, 
-    direction?: boolean
+    counterclockwise?: boolean
   ) {
     this.center = center;
     this.radius = radius;
     this.startAngle = startAngle;
     this.endAngle = endAngle;
-    this.direction = direction;
+    this.counterclockwise = counterclockwise;
     this.#renderer.shape = this;
   }
 
@@ -40,5 +40,9 @@ export default class Arc implements AbstractShape {
   }
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

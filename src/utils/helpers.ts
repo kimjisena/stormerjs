@@ -105,11 +105,11 @@ function createArc (
   rad: number,
   startAngle: number, 
   endAngle: number, 
-  direction?: boolean
+  counterclockwise?: boolean
 ): Shapes.Arc {
   let vector = new Vector(x, y);
 
-  return new Arc(vector, rad, startAngle, endAngle, direction);
+  return new Arc(vector, rad, startAngle, endAngle, counterclockwise);
 }
 
 function createCurve (

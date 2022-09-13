@@ -1,3 +1,32 @@
+interface PropTypes {
+  direction (value: string): PropTypes;
+  fillStyle (value: string): PropTypes;
+  filter (value: string): PropTypes;
+  font (value: string): PropTypes;
+  fontKerning (value: string): PropTypes;
+  fontStretch (value: string): PropTypes;
+  fontVariantCaps (value: string): PropTypes;
+  globalAlpha (value: number): PropTypes;
+  globalCompositeOperation (value: string): PropTypes;
+  imageSmoothingEnabled (value: boolean): PropTypes;
+  imageSmoothingQuality (value: string): PropTypes;
+  letterSpacing (value: string): PropTypes;
+  lineCap (value: string): PropTypes;
+  lineDashOffset (value: number): PropTypes;
+  lineJoin (value: string): PropTypes;
+  lineWidth (value: number): PropTypes;
+  miterLimit (value: number): PropTypes;
+  shadowBlur (value: number): PropTypes;
+  shadowColor (value: string): PropTypes;
+  shadowOffsetX (value: number): PropTypes;
+  shadowOffsetY (value: number): PropTypes;
+  strokeStyle (value: string): PropTypes;
+  textAlign (value: string): PropTypes;
+  textBaseline (value: string): PropTypes;
+  textRendering (value: string): PropTypes;
+  wordSpacing (value: string): PropTypes;
+}
+
 interface Vector {
   x: number;
   y: number;
@@ -15,31 +44,55 @@ interface TriangleVectors {
 namespace Shapes {
   export interface Point {
     vector: Vector;
+
+    attach (surface: Surface): Point;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Line {
-    lineVectors: LineVectors,
+    lineVectors: LineVectors;
+
+    attach (surface: Surface): Line;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Rectangle {
     origin: Vector;
     width: number;
     height: number;
+
+    attach (surface: Surface): Rectangle;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Triangle {
-    triangleVectors: TriangleVectors,
+    triangleVectors: TriangleVectors;
+
+    attach (surface: Surface): Triangle;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Ellipse {
     center: Vector;
     width: number;
     height: number;
+
+    attach (surface: Surface): Ellipse;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Circle {
     center: Vector;
     radius: number;
+
+    attach (surface: Surface): Circle;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Arc {
@@ -47,13 +100,21 @@ namespace Shapes {
     radius: number;
     startAngle: number;
     endAngle: number;
-    direction: boolean;
+    counterclockwise: boolean;
+
+    attach (surface: Surface): Arc;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Curve {
     anchor: Vector;
     from: Vector;
     to: Vector;
+
+    attach (surface: Surface): Curve;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 
   export interface Bezier {
@@ -61,6 +122,10 @@ namespace Shapes {
     anchorTwo: Vector;
     from: Vector;
     to: Vector;
+
+    attach (surface: Surface): Bezier;
+    render (): void;
+    shouldUpdate (): boolean;
   }
 }
 
@@ -92,7 +157,7 @@ interface AbstractShape {
   // Implemented by Shapes.Arc
   startAngle?: number;
   endAngle?: number;
-  direction?: boolean;
+  counterclockwise?: boolean;
 
   // Implemented by Shapes.Curve
   anchor?: Vector;
@@ -109,6 +174,7 @@ interface AbstractShape {
   attach (surface: Surface): AbstractShape;
   render (): void;
   shouldUpdate (): boolean;
+  getPropsObj (): PropTypes;
 }
 
 interface Group {
@@ -130,6 +196,7 @@ interface Surface {
 }
 
 export { 
+  PropTypes,
   Vector, 
   LineVectors, 
   TriangleVectors,

@@ -1,6 +1,6 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { AbstractShape, Surface, TriangleVectors } from "./types";
+import { AbstractShape, Surface, TriangleVectors, PropTypes } from "./types";
 
 export default class Triangle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Triangle);
@@ -27,5 +27,9 @@ export default class Triangle implements AbstractShape {
 
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

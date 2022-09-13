@@ -1,6 +1,6 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { AbstractShape, Surface, LineVectors } from "./types";
+import { AbstractShape, Surface, LineVectors, PropTypes } from "./types";
 
 export default class Line implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Line);
@@ -30,5 +30,9 @@ export default class Line implements AbstractShape {
 
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

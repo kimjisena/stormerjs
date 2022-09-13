@@ -1,7 +1,7 @@
 import { StormRenderer } from "../renderer/renderer";
 import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
-import { AbstractShape, Surface } from "./types";
+import { AbstractShape, Surface, PropTypes } from "./types";
 
 export default class Point implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Point);
@@ -29,5 +29,9 @@ export default class Point implements AbstractShape {
 
   shouldUpdate (): boolean {
     return this.#renderer.shouldUpdate;
+  }
+
+  getPropsObj(): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }
