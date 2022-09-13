@@ -40,6 +40,10 @@ export default class Props implements PropTypes {
     return this.#$_$;
   }
 
+  set propsMap (value: Map<string, any>) {
+    this.#$_$ = new Map(value);
+  }
+
   direction (value: string): PropTypes {
     this.#$_$.set(keys.direction, value);
     return this;

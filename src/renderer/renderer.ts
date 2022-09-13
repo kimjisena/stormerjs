@@ -31,9 +31,6 @@ class StormRenderer {
 
   render () {
     const ctx = this.shape.surface._;
-    // where art thou Rene Descartes
-    ctx.translate(0, ctx.canvas.height);
-    ctx.scale(1, -1);
 
     // save Canvas state
     ctx.save();
@@ -230,8 +227,7 @@ class StormRenderer {
     // reset status flag
     this.#shouldUpdate = false;
 
-    // clear the transformation matrix
-    this.#transforms.transformActions = [];
+    return this.shape;
   }
 
   set shouldUpdate (value: boolean) {

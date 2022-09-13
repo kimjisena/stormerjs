@@ -35,6 +35,6 @@ export default class Transforms implements TransformsType {
   }
 
   set transformActions (value: Array<any>) {
-    this.#$_$ = value;
+    this.#$_$ = [...value];
   }
 }

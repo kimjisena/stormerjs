@@ -1,4 +1,6 @@
 interface PropTypes {
+  propsMap: Map<string, any>;
+
   direction (value: string): PropTypes;
   fillStyle (value: string): PropTypes;
   filter (value: string): PropTypes;
@@ -28,6 +30,8 @@ interface PropTypes {
 }
 
 interface TransformsType {
+  transformActions: Array<any>;
+
   degToRad (deg: number): number;
   translate (x: number, y: number): TransformsType;
   rotate (angle: number): TransformsType;
