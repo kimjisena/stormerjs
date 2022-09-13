@@ -21,8 +21,9 @@ export default class Arc implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Arc {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

@@ -16,8 +16,9 @@ export default class Line implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Line {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

@@ -15,8 +15,9 @@ export default class Circle implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Circle {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

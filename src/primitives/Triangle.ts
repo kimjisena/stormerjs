@@ -13,8 +13,9 @@ export default class Triangle implements AbstractShape {
     this.#renderer.shape = this;
   }
   
-  attach (surface: Surface): void {
+  attach (surface: Surface): Triangle {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

@@ -17,8 +17,9 @@ export default class Rectangle implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Rectangle {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

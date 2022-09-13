@@ -17,8 +17,9 @@ export default class Curve implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Curve {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

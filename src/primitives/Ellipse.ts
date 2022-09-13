@@ -17,8 +17,9 @@ export default class Ellipse implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Ellipse {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

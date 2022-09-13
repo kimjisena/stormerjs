@@ -19,8 +19,9 @@ export default class Bezier implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Bezier {
     this.surface = surface;
+    return this;
   }
 
   render (): void {

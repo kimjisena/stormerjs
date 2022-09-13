@@ -15,8 +15,9 @@ export default class Point implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): void {
+  attach (surface: Surface): Point {
     this.surface = surface;
+    return this;
   }
 
   render (): void {
