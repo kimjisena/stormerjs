@@ -1,17 +1,20 @@
-import Point from "./Point";
-import Shape from "./Shape";
+import Vector from "./Vector";
+import { StormRenderer } from "../renderer/renderer";
 import StormTypes from "../utils/symbols";
 
-export default class Curve extends Shape {
-  anchor: Point;
-  from: Point;
-  to: Point;
+export default class Curve {
+  #renderer: StormRenderer = new StormRenderer(StormTypes.Curve);
+  anchor: Vector;
+  from: Vector;
+  to: Vector;
 
-  constructor (anchor: Point, from: Point, to: Point) {
-    super(StormTypes.Curve);
-    
+  constructor (anchor: Vector, from: Vector, to: Vector) {
     this.anchor = anchor;
     this.from = from;
     this.to = to;
+  }
+
+  render () {
+    this.#renderer.render();
   }
 }

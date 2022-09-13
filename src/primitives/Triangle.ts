@@ -1,40 +1,16 @@
 import Vector from "./Vector";
-import Shape from "./Shape";
+import StormTypes from "../utils/symbols";
+import { StormRenderer } from "../renderer/renderer";
 
-export default class Triangle extends Shape {
+export default class Triangle {
+  #renderer: StormRenderer = new StormRenderer(StormTypes.Triangle);
   vectors: {vec1: Vector, vec2: Vector, vec3: Vector};
 
   constructor (vectors: {vec1: Vector, vec2: Vector, vec3: Vector}) {
-    super();
     this.vectors = vectors;
   }
 
   render () {
-    const ctx = this.surface._surface;
-    // save Canvas state
-    ctx.save();
-
-    // apply config e.g. fillStyle
-    for (let [key, value] of this.config) {
-      ctx[key] = value;
-    }
-
-    // draw triangle
-    ctx.beginPath();
-    ctx.moveTo(this.vectors.vec1.x, this.vectors.vec1.y);
-    ctx.lineTo(this.vectors.vec2.x, this.vectors.vec2.y);
-    ctx.lineTo(this.vectors.vec3.x, this.vectors.vec3.y);
-    ctx.closePath();
-    if (this.shouldFill) {
-      ctx.fill();
-    } else {
-      ctx.stroke();
-    }
-
-    // restore Canvas state
-    ctx.restore();
-
-    // reset status flage
-    this.shouldUpdate = false;
+    this.#renderer.render();
   }
 }

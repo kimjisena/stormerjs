@@ -81,22 +81,141 @@ class StormRenderer {
         ctx.lineTo(this.shape.vector.x + 1, this.shape.vector.y + 1);
         ctx.stroke();
         break;
+
       case StormTypes.Line:
+        // draw line
+        ctx.beginPath();
+        ctx.moveTo(this.shape.vectors[0].x, this.shape.vectors[0].y);
+        for (let i = 1; i < this.shape.vectors.length; i++) {
+          ctx.lineTo(this.shape.vectors[i].x, this.shape.vectors[i].y);
+        }
+        ctx.stroke();
         break;
+
       case StormTypes.Rectangle:
+        // draw rectangle
+        ctx.rect(
+          this.shape.origin.x, 
+          this.shape.origin.y, 
+          this.shape.width, 
+          this.shape.height
+        );
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
+
       case StormTypes.Triangle:
+        // draw triangle
+        ctx.beginPath();
+        ctx.moveTo(this.shape.vectors.vec1.x, this.shape.vectors.vec1.y);
+        ctx.lineTo(this.shape.vectors.vec2.x, this.shape.vectors.vec2.y);
+        ctx.lineTo(this.shape.vectors.vec3.x, this.shape.vectors.vec3.y);
+        ctx.closePath();
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
+
+      case StormTypes.Ellipse:
+        // draw an ellipse
+        ctx.beginPath();
+        ctx.ellipse(
+          this.shape.center.x,
+          this.shape.center.y,
+          this.shape.width / 2,
+          this.shape.height / 2,
+          0,
+          0,
+          2 * Math.PI,
+          false,
+        );
+
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
+        break;
+
       case StormTypes.Circle:
+        // draw circle
+        ctx.beginPath();
+        ctx.ellipse(
+          this.shape.center.x, 
+          this.shape.center.y, 
+          this.shape.radius,
+          this.shape.radius,
+          0, 
+          0, 2 * Math.PI, 
+          false
+        );
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
-      case StormTypes.Curve:
-        break;
+
       case StormTypes.Arc:
+        // draw an arc
+        ctx.beginPath();
+        let start = this.degToRad(this.shape.startAngle);
+        let end = this.degToRad(this.shape.endAngle);
+        ctx.arc(
+          this.shape.center.x, 
+          this.shape.center.y, 
+          this.shape.radius, 
+          start, end, 
+          this.shape.direction
+        );
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
+
       case StormTypes.Curve:
+        // draw a quadratic bezier curve
+        ctx.beginPath();
+        ctx.moveTo(this.shape.from.x, this.shape.from.y);
+        ctx.quadraticCurveTo(
+          this.shape.anchor.x, 
+          this.shape.anchor.y, 
+          this.shape.to.x, 
+          this.shape.to.y
+        );
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
+
       case StormTypes.Bezier:
+        // draw a cubic bezier curve
+        ctx.beginPath();
+        ctx.moveTo(this.shape.from.x, this.shape.from.y);
+        ctx.bezierCurveTo(
+          this.shape.anchorOne.x,
+          this.shape.anchorOne.y,
+          this.shape.anchorTwo.x,
+          this.shape.anchorTwo.y,
+          this.shape.to.x,
+          this.shape.to.y
+        );
+        if (this.shouldFill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
+        
       default:
         break;
     }
