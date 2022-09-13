@@ -1,8 +1,9 @@
-import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import AbstractShape from "./AbstractShape";
+import { Vector } from "./types";
 
-export default class Ellipse {
+export default class Ellipse implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Ellipse);
   center: Vector;
   width: number;

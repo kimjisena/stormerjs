@@ -1,13 +1,14 @@
-import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import AbstractShape from "./AbstractShape";
+import { TriangleVectors } from "./types";
 
-export default class Triangle {
+export default class Triangle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Triangle);
-  vectors: {vec1: Vector, vec2: Vector, vec3: Vector};
+  triangleVectors: TriangleVectors;
 
-  constructor (vectors: {vec1: Vector, vec2: Vector, vec3: Vector}) {
-    this.vectors = vectors;
+  constructor (vectors: TriangleVectors) {
+    this.triangleVectors = vectors;
   }
 
   render () {

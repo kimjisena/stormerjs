@@ -1,16 +1,17 @@
-import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import type AbstractShape from "./AbstractShape";
+import { LineVectors } from "./types";
 
-export default class Line {
+export default class Line implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Line);
-  vectors: Array<Vector>;
+  lineVectors: LineVectors;
 
-  constructor (vectors: Array<Vector>) {
+  constructor (vectors: LineVectors) {
     if (vectors.length < 2) {
       throw new Error("At least two vectors are required to draw a line.");
     }
-    this.vectors = vectors;
+    this.lineVectors = vectors;
   }
 
   render () {

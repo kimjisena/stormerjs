@@ -1,8 +1,9 @@
-import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import AbstractShape from "./AbstractShape";
+import { Vector } from "./types";
 
-export default class Arc {
+export default class Arc implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Arc);
   center: Vector;
   radius: number;

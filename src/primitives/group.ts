@@ -1,8 +1,8 @@
 import Surface from "./surface";
-import Shape from "./Shape";
+import AbstractShape from "./AbstractShape";
 
 export default class Group {
-  shapes: Array<Shape>;
+  shapes: Array<AbstractShape>;
   surface: Surface;
   config: Map<string, any>
 
@@ -15,7 +15,7 @@ export default class Group {
     this.config.set(prop, value);
   }
 
-  addShape (shape: Shape) {
+  addShape (shape: AbstractShape) {
     shape.surface = this.surface;
     this.shapes.push(shape);
   }

@@ -1,8 +1,9 @@
 import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import type AbstractShape from "./AbstractShape";
 
-export default class Rectangle {
+export default class Rectangle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Rectangle);
   origin: Vector;
   width: number;

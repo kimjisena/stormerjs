@@ -1,16 +1,18 @@
 import Surface from "../primitives/surface";
 import Vector from "../primitives/Vector";
 import StormTypes from "../utils/symbols";
+import AbstractShape from "../primitives/AbstractShape";
 
 class StormRenderer {
   #type: symbol;
-  shape: any;
   #shouldUpdate: boolean = true;
   #shouldFill: boolean = false;
   #translateTo: Vector = new Vector(0, 0);
   #rotateBy: number = 0;
   #scaleBy: Vector = new Vector(1, 1);
+
   surface: Surface;
+  shape: AbstractShape;
   config: Map<string, any>;
   transformOrder: Array<number> = new Array(3).fill(null);
 
@@ -85,9 +87,15 @@ class StormRenderer {
       case StormTypes.Line:
         // draw line
         ctx.beginPath();
-        ctx.moveTo(this.shape.vectors[0].x, this.shape.vectors[0].y);
-        for (let i = 1; i < this.shape.vectors.length; i++) {
-          ctx.lineTo(this.shape.vectors[i].x, this.shape.vectors[i].y);
+        ctx.moveTo(
+          this.shape.lineVectors[0].x, 
+          this.shape.lineVectors[0].y
+          );
+        for (let i = 1; i < this.shape.lineVectors.length; i++) {
+          ctx.lineTo(
+            this.shape.lineVectors[i].x, 
+            this.shape.lineVectors[i].y
+            );
         }
         ctx.stroke();
         break;
@@ -110,9 +118,18 @@ class StormRenderer {
       case StormTypes.Triangle:
         // draw triangle
         ctx.beginPath();
-        ctx.moveTo(this.shape.vectors.vec1.x, this.shape.vectors.vec1.y);
-        ctx.lineTo(this.shape.vectors.vec2.x, this.shape.vectors.vec2.y);
-        ctx.lineTo(this.shape.vectors.vec3.x, this.shape.vectors.vec3.y);
+        ctx.moveTo(
+          this.shape.triangleVectors.vec1.x, 
+          this.shape.triangleVectors.vec1.y
+          );
+        ctx.lineTo(
+          this.shape.triangleVectors.vec2.x, 
+          this.shape.triangleVectors.vec2.y
+          );
+        ctx.lineTo(
+          this.shape.triangleVectors.vec3.x, 
+          this.shape.triangleVectors.vec3.y
+          );
         ctx.closePath();
         if (this.shouldFill) {
           ctx.fill();
@@ -215,7 +232,7 @@ class StormRenderer {
           ctx.stroke();
         }
         break;
-        
+
       default:
         break;
     }

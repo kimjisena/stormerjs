@@ -1,8 +1,9 @@
-import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
+import { Vector } from "./types";
+import AbstractShape from "./AbstractShape";
 
-export default class Circle {
+export default class Circle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Circle);
   center: Vector;
   radius: number;
