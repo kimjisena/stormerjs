@@ -22,22 +22,22 @@ export default class Rectangle implements AbstractShape {
     return this;
   }
 
-  render (): void {
+  render (fill?: boolean): void {
     if (!this.surface) {
       throw new Error('Can\'t draw a detached shape. Attach surface.')
     }
-    this.#renderer.render();
-  }
-
-  shouldUpdate (): boolean {
-    return this.#renderer.shouldUpdate;
-  }
-
-  getPropsObj (): PropTypes {
-    return this.#renderer.getPropsObject();
+    if (fill !== undefined) {
+      this.#renderer.render(fill);
+    } else {
+      this.#renderer.render();
+    }
   }
 
   getTransformsObj (): TransformsType {
     return this.#renderer.getTransformsObject();
+  }
+
+  getPropsObj (): PropTypes {
+    return this.#renderer.getPropsObject();
   }
 }

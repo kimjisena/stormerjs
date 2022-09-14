@@ -7,7 +7,7 @@ function createAction(type: symbol, payload: number | Vector): any {
 }
 
 export default class Transforms implements TransformsType {
-  #$_$: Array<any> = [];
+  #__transforms__: Array<any> = [];
 
   degToRad (deg: number): number {
     return (Math.PI / 180) * deg
@@ -15,26 +15,26 @@ export default class Transforms implements TransformsType {
 
   translate (x: number, y: number): TransformsType {
     let vector = new Vector(x, y);
-    this.#$_$.push(createAction(StormTypes.Translate, vector));
+    this.#__transforms__.push(createAction(StormTypes.Translate, vector));
     return this;
   }
 
   rotate(angle: number): TransformsType {
-    this.#$_$.push(createAction(StormTypes.Rotate, this.degToRad(angle)));
+    this.#__transforms__.push(createAction(StormTypes.Rotate, this.degToRad(angle)));
     return this;
   }
 
   scale(x: number, y: number): TransformsType {
     let vector = new Vector(x, y);
-    this.#$_$.push(createAction(StormTypes.Scale, vector));
+    this.#__transforms__.push(createAction(StormTypes.Scale, vector));
     return this;
   }
 
   get transformActions (): Array<any> {
-    return this.#$_$;
+    return this.#__transforms__;
   }
 
   set transformActions (value: Array<any>) {
-    this.#$_$ = [...value];
+    this.#__transforms__ = [...value];
   }
 }

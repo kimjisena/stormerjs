@@ -58,7 +58,7 @@ namespace Shapes {
 
     attach (surface: Surface): Point;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -68,7 +68,7 @@ namespace Shapes {
 
     attach (surface: Surface): Line;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -80,7 +80,7 @@ namespace Shapes {
 
     attach (surface: Surface): Rectangle;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -90,7 +90,7 @@ namespace Shapes {
 
     attach (surface: Surface): Triangle;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -102,7 +102,7 @@ namespace Shapes {
 
     attach (surface: Surface): Ellipse;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -113,7 +113,7 @@ namespace Shapes {
 
     attach (surface: Surface): Circle;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -127,7 +127,7 @@ namespace Shapes {
 
     attach (surface: Surface): Arc;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -139,7 +139,7 @@ namespace Shapes {
 
     attach (surface: Surface): Curve;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -152,7 +152,7 @@ namespace Shapes {
 
     attach (surface: Surface): Bezier;
     render (fill?: boolean): void;
-    shouldUpdate (): boolean;
+
     getPropsObj (): PropTypes;
     getTransformsObj (): TransformsType;
   }
@@ -202,27 +202,14 @@ interface AbstractShape {
   // All shapes must implement these methods
   attach (surface: Surface): AbstractShape;
   render (fill?: boolean): void;
-  shouldUpdate (): boolean;
   getPropsObj (): PropTypes;
   getTransformsObj (): TransformsType;
 }
 
-interface Group {
-  shapes: Array<AbstractShape>;
-  surface: Surface;
-  config: Map<string, any>;
-
-  configure (prop: string, value: any): void;
-  addShape (shape: AbstractShape): void;
-  shouldUpdate (): boolean;
-  renderShapes (): void;
-}
-
 interface Surface {
-  groups: Array<Group>;
   _: CanvasRenderingContext2D;
 
-  renderGroups (): void;
+  clear (): void;
 }
 
 export { 
@@ -234,6 +221,5 @@ export {
   TriangleVectors,
   AbstractShape,
   Shapes, 
-  Group, 
   Surface, 
 }

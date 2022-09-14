@@ -1,4 +1,3 @@
-import Vector from "../primitives/Vector";
 import StormTypes from "../utils/symbols";
 import { AbstractShape } from "../primitives/types";
 import Props from "../utils/props";
@@ -6,8 +5,6 @@ import Transforms from "../utils/trasform";
 
 class StormRenderer {
   #type: symbol;
-  #shouldUpdate: boolean = true;
-  #shouldFill: boolean = false;
   #props: Props = new Props();
   #transforms: Transforms = new Transforms();
 
@@ -29,7 +26,7 @@ class StormRenderer {
     return (Math.PI / 180) * deg
   }
 
-  render () {
+  render (fill = false) {
     const ctx = this.shape.surface._;
 
     // save Canvas state
@@ -92,7 +89,7 @@ class StormRenderer {
           this.shape.width, 
           this.shape.height
         );
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -115,7 +112,7 @@ class StormRenderer {
           this.shape.triangleVectors.vec3.y
           );
         ctx.closePath();
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -136,7 +133,7 @@ class StormRenderer {
           false,
         );
 
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -155,7 +152,7 @@ class StormRenderer {
           0, 2 * Math.PI, 
           false
         );
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -174,7 +171,7 @@ class StormRenderer {
           start, end, 
           this.shape.counterclockwise
         );
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -191,7 +188,7 @@ class StormRenderer {
           this.shape.to.x, 
           this.shape.to.y
         );
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -210,7 +207,7 @@ class StormRenderer {
           this.shape.to.x,
           this.shape.to.y
         );
-        if (this.shouldFill) {
+        if (fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -224,28 +221,8 @@ class StormRenderer {
     // restore Canvas state
     ctx.restore();
 
-    // reset status flag
-    this.#shouldUpdate = false;
-
     return this.shape;
   }
-
-  set shouldUpdate (value: boolean) {
-    this.#shouldUpdate = value;
-  }
-
-  get shouldUpdate () {
-    return this.#shouldUpdate;
-  }
-
-  set shouldFill (value: boolean) {
-    this.#shouldFill = value;
-  }
-
-  get shouldFill () {
-    return this.#shouldFill;
-  }
-
 }
 
 export { StormRenderer }
