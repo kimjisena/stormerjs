@@ -1,11 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { AbstractShape, Surface, TriangleVectors, PropTypes, TransformsType } from "./types";
+import { AbstractShape, Layer, TriangleVectors, PropTypes, TransformsType } from "./types";
 
 export default class Triangle implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Triangle);
 
-  surface: Surface;
+  layer: Layer;
   triangleVectors: TriangleVectors;
 
   constructor (vectors: TriangleVectors) {
@@ -13,14 +13,14 @@ export default class Triangle implements AbstractShape {
     this.#renderer.shape = this;
   }
   
-  attach (surface: Surface): Triangle {
-    this.surface = surface;
+  attach (layer: Layer): Triangle {
+    this.layer = layer.addShape(this);
     return this;
   }
 
   render (fill?: boolean): void {
-    if (!this.surface) {
-      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    if (!this.layer) {
+      throw new Error('Can\'t draw a detached shape. Attach layer.')
     }
     if (fill !== undefined) {
       this.#renderer.render(fill);

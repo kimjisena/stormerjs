@@ -27,7 +27,7 @@ class StormRenderer {
   }
 
   render (fill = false) {
-    const ctx = this.shape.surface._;
+    const ctx = this.shape.layer._;
 
     // save Canvas state
     ctx.save();

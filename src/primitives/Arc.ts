@@ -1,11 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { Vector, AbstractShape, Surface, PropTypes, TransformsType } from "./types";
+import { Vector, AbstractShape, Layer, PropTypes, TransformsType } from "./types";
 
 export default class Arc implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Arc);
 
-  surface: Surface;
+  layer: Layer;
   center: Vector;
   radius: number;
   startAngle: number;
@@ -27,14 +27,14 @@ export default class Arc implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): Arc {
-    this.surface = surface;
+  attach (layer: Layer): Arc {
+    this.layer = layer.addShape(this);
     return this;
   }
 
   render (fill?: boolean): void {
-    if (!this.surface) {
-      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    if (!this.layer) {
+      throw new Error('Can\'t draw a detached shape. Attach layer.')
     }
     if (fill !== undefined) {
       this.#renderer.render(fill);

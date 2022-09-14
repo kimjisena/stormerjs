@@ -1,12 +1,12 @@
 import { StormRenderer } from "../renderer/renderer";
 import Vector from "./Vector";
 import StormTypes from "../utils/symbols";
-import { AbstractShape, Surface, PropTypes, TransformsType } from "./types";
+import { AbstractShape, Layer, PropTypes, TransformsType } from "./types";
 
 export default class Point implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Point);
 
-  surface: Surface;
+  layer: Layer;
   vector: Vector;
 
   constructor (x: number, y: number) {
@@ -15,14 +15,14 @@ export default class Point implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): Point {
-    this.surface = surface;
+  attach (layer: Layer): Point {
+    this.layer = layer.addShape(this);
     return this;
   }
 
   render (fill?: boolean): void {
-    if (!this.surface) {
-      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    if (!this.layer) {
+      throw new Error('Can\'t draw a detached shape. Attach layer.')
     }
     if (fill !== undefined) {
       this.#renderer.render(fill);

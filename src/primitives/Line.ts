@@ -1,11 +1,11 @@
 import StormTypes from "../utils/symbols";
 import { StormRenderer } from "../renderer/renderer";
-import { AbstractShape, Surface, LineVectors, PropTypes, TransformsType } from "./types";
+import { AbstractShape, Layer, LineVectors, PropTypes, TransformsType } from "./types";
 
 export default class Line implements AbstractShape {
   #renderer: StormRenderer = new StormRenderer(StormTypes.Line);
 
-  surface: Surface;
+  layer: Layer;
   lineVectors: LineVectors;
 
   constructor (vectors: LineVectors) {
@@ -16,14 +16,14 @@ export default class Line implements AbstractShape {
     this.#renderer.shape = this;
   }
 
-  attach (surface: Surface): Line {
-    this.surface = surface;
+  attach (layer: Layer): Line {
+    this.layer = layer.addShape(this);
     return this;
   }
 
   render (fill?: boolean): void {
-    if (!this.surface) {
-      throw new Error('Can\'t draw a detached shape. Attach surface.')
+    if (!this.layer) {
+      throw new Error('Can\'t draw a detached shape. Attach layer.')
     }
     if (fill !== undefined) {
       this.#renderer.render(fill);

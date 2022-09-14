@@ -56,7 +56,7 @@ namespace Shapes {
   export interface Point {
     vector: Vector;
 
-    attach (surface: Surface): Point;
+    attach (surface: Layer): Point;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -66,7 +66,7 @@ namespace Shapes {
   export interface Line {
     lineVectors: LineVectors;
 
-    attach (surface: Surface): Line;
+    attach (surface: Layer): Line;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -78,7 +78,7 @@ namespace Shapes {
     width: number;
     height: number;
 
-    attach (surface: Surface): Rectangle;
+    attach (surface: Layer): Rectangle;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -88,7 +88,7 @@ namespace Shapes {
   export interface Triangle {
     triangleVectors: TriangleVectors;
 
-    attach (surface: Surface): Triangle;
+    attach (surface: Layer): Triangle;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -100,7 +100,7 @@ namespace Shapes {
     width: number;
     height: number;
 
-    attach (surface: Surface): Ellipse;
+    attach (surface: Layer): Ellipse;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -111,7 +111,7 @@ namespace Shapes {
     center: Vector;
     radius: number;
 
-    attach (surface: Surface): Circle;
+    attach (surface: Layer): Circle;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -125,7 +125,7 @@ namespace Shapes {
     endAngle: number;
     counterclockwise: boolean;
 
-    attach (surface: Surface): Arc;
+    attach (surface: Layer): Arc;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -137,7 +137,7 @@ namespace Shapes {
     from: Vector;
     to: Vector;
 
-    attach (surface: Surface): Curve;
+    attach (surface: Layer): Curve;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -150,7 +150,7 @@ namespace Shapes {
     from: Vector;
     to: Vector;
 
-    attach (surface: Surface): Bezier;
+    attach (surface: Layer): Bezier;
     render (fill?: boolean): void;
 
     getPropsObj (): PropTypes;
@@ -160,7 +160,7 @@ namespace Shapes {
 
 interface AbstractShape {
   // All shapes must implemetnt this field
-  surface: Surface;
+  layer: Layer;
   // Implemented by Shapes.Point
   vector?: Vector;
 
@@ -200,16 +200,19 @@ interface AbstractShape {
   anchorTwo?: Vector;
 
   // All shapes must implement these methods
-  attach (surface: Surface): AbstractShape;
+  attach (layer: Layer): AbstractShape;
   render (fill?: boolean): void;
   getPropsObj (): PropTypes;
   getTransformsObj (): TransformsType;
 }
 
-interface Surface {
+interface Layer {
   _: CanvasRenderingContext2D;
 
-  clear (): void;
+  addShape (shape: AbstractShape): Layer;
+  clearCanvas (): void;
+  clearLayer (): Layer;
+  render (): Layer;
 }
 
 export { 
@@ -221,5 +224,5 @@ export {
   TriangleVectors,
   AbstractShape,
   Shapes, 
-  Surface, 
+  Layer, 
 }

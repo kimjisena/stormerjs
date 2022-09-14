@@ -1,4 +1,4 @@
-import Surface from "./primitives/surface";
+import Layer from "./primitives/layer";
 import Shapes, { Vector } from "./primitives/shapes";
 import { 
   createLineVectors, 
@@ -14,7 +14,7 @@ import {
 } from "./utils/helpers";
 
 const Storm =  { 
-  Surface,
+  Layer,
   Shapes,
   Vector,
 };
