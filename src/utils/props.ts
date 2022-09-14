@@ -1,4 +1,4 @@
-import { PropTypes } from "../primitives/types";
+import { PropTypes } from "../types";
 
 const keys =  {
   direction: 'direction',
@@ -31,6 +31,8 @@ const keys =  {
 
 export default class Props implements PropTypes {
   #__props__: Map<string, any>;
+  #fill: boolean = false;
+  #__STRICT_NOT_FILL: boolean = false;
 
   constructor () {
     this.#__props__ = new Map();
@@ -42,6 +44,24 @@ export default class Props implements PropTypes {
 
   set propsMap (value: Map<string, any>) {
     this.#__props__ = new Map(value);
+  }
+
+  get fill (): boolean {
+    return this.#fill;
+  }
+
+  get strictNotFill (): boolean {
+    return this.#__STRICT_NOT_FILL;
+  }
+
+  shouldFill (value: boolean): PropTypes {
+    if (!value) {
+      this.#__STRICT_NOT_FILL = true;
+    } else {
+      this.#fill = value;
+    }
+
+    return this;
   }
 
   direction (value: string): PropTypes {

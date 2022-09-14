@@ -1,6 +1,6 @@
 import StormTypes from "./symbols";
 import Vector from "../primitives/Vector";
-import { TransformsType } from "../primitives/types";
+import { TransformsType } from "../types";
 
 function createAction(type: symbol, payload: number | Vector): any {
   return { type, payload };

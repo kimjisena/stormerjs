@@ -1,5 +1,5 @@
 import StormTypes from "../utils/symbols";
-import { AbstractShape } from "../primitives/types";
+import { AbstractShape } from "../types";
 import Props from "../utils/props";
 import Transforms from "../utils/trasform";
 
@@ -26,8 +26,8 @@ class StormRenderer {
     return (Math.PI / 180) * deg
   }
 
-  render (fill = false) {
-    const ctx = this.shape.layer._;
+  render () {
+    const ctx = this.shape.layer.__context;
 
     // save Canvas state
     ctx.save();
@@ -78,7 +78,11 @@ class StormRenderer {
             this.shape.lineVectors[i].y
             );
         }
-        ctx.stroke();
+        if (this.#props.fill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
         break;
 
       case StormTypes.Rectangle:
@@ -89,7 +93,7 @@ class StormRenderer {
           this.shape.width, 
           this.shape.height
         );
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -112,7 +116,7 @@ class StormRenderer {
           this.shape.triangleVectors.vec3.y
           );
         ctx.closePath();
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -133,7 +137,7 @@ class StormRenderer {
           false,
         );
 
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -152,7 +156,7 @@ class StormRenderer {
           0, 2 * Math.PI, 
           false
         );
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -171,7 +175,7 @@ class StormRenderer {
           start, end, 
           this.shape.counterclockwise
         );
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -188,7 +192,7 @@ class StormRenderer {
           this.shape.to.x, 
           this.shape.to.y
         );
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();
@@ -207,7 +211,7 @@ class StormRenderer {
           this.shape.to.x,
           this.shape.to.y
         );
-        if (fill) {
+        if (this.#props.fill) {
           ctx.fill();
         } else {
           ctx.stroke();

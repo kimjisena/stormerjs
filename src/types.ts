@@ -1,6 +1,9 @@
 interface PropTypes {
   propsMap: Map<string, any>;
+  fill: boolean;
+  strictNotFill: boolean;
 
+  shouldFill (value: boolean): PropTypes;
   direction (value: string): PropTypes;
   fillStyle (value: string): PropTypes;
   filter (value: string): PropTypes;
@@ -57,20 +60,20 @@ namespace Shapes {
     vector: Vector;
 
     attach (surface: Layer): Point;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Line {
     lineVectors: LineVectors;
 
     attach (surface: Layer): Line;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Rectangle {
@@ -79,20 +82,20 @@ namespace Shapes {
     height: number;
 
     attach (surface: Layer): Rectangle;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Triangle {
     triangleVectors: TriangleVectors;
 
     attach (surface: Layer): Triangle;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Ellipse {
@@ -101,10 +104,10 @@ namespace Shapes {
     height: number;
 
     attach (surface: Layer): Ellipse;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Circle {
@@ -112,10 +115,10 @@ namespace Shapes {
     radius: number;
 
     attach (surface: Layer): Circle;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Arc {
@@ -126,10 +129,10 @@ namespace Shapes {
     counterclockwise: boolean;
 
     attach (surface: Layer): Arc;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Curve {
@@ -138,10 +141,10 @@ namespace Shapes {
     to: Vector;
 
     attach (surface: Layer): Curve;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 
   export interface Bezier {
@@ -151,10 +154,10 @@ namespace Shapes {
     to: Vector;
 
     attach (surface: Layer): Bezier;
-    render (fill?: boolean): void;
+    render (): void;
 
-    getPropsObj (): PropTypes;
-    getTransformsObj (): TransformsType;
+    setProps (): PropTypes;
+    setTransforms (): TransformsType;
   }
 }
 
@@ -201,15 +204,17 @@ interface AbstractShape {
 
   // All shapes must implement these methods
   attach (layer: Layer): AbstractShape;
-  render (fill?: boolean): void;
-  getPropsObj (): PropTypes;
-  getTransformsObj (): TransformsType;
+  render (): void;
+  setProps (): PropTypes;
+  setTransforms (): TransformsType;
 }
 
 interface Layer {
-  _: CanvasRenderingContext2D;
+  __context: CanvasRenderingContext2D;
+  _UNSTABLE__volatile__draw (): void;
 
   addShape (shape: AbstractShape): Layer;
+  setProps (): PropTypes;
   clearCanvas (): void;
   clearLayer (): Layer;
   render (): Layer;

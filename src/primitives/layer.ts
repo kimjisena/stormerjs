@@ -1,4 +1,5 @@
-import { AbstractShape } from "./types";
+import { AbstractShape } from "../types";
+import Props from "../utils/props";
 
 const CANVAS_LAYERS_MAP: Map<CanvasRenderingContext2D, Array<Layer>> = new Map();
 
@@ -13,17 +14,19 @@ function drawLayers (ctx: CanvasRenderingContext2D) {
   resetContext(ctx);
 
   for (let layer of layers) {
-    layer.render();
+    layer._UNSTABLE__volatile__draw();
   }
 }
 
 export default class Layer {
-  _: CanvasRenderingContext2D;
+  __context: CanvasRenderingContext2D;
   #shapes: Set<AbstractShape> = new Set();
+  #__props__: Props = new Props();
+  #__mount: boolean = true;
 
   constructor (canvas: HTMLCanvasElement) {
     let ctx = canvas.getContext('2d');
-    this._ = ctx;
+    this.__context = ctx;
     
     // add this layer to the map
     if (CANVAS_LAYERS_MAP.has(ctx)) {
@@ -38,21 +41,50 @@ export default class Layer {
     return this;
   }
 
+  setProps (): Props {
+    return this.#__props__;
+  }
+
   clearCanvas (): void {
-    resetContext(this._);
+    resetContext(this.__context);
   }
 
   clearLayer (): Layer {
     this.#shapes = new Set();
-    drawLayers(this._);
+    drawLayers(this.__context);
     return this;
+  }
+
+  _UNSTABLE__volatile__draw (): void {
+    let layerProps = this.#__props__.propsMap;
+    let layerFill = this.#__props__.fill;
+    // save canvas state
+    this.__context.save();
+
+    // apply layer props e.g. fillStyle
+    for (let [key, value] of layerProps) {
+      this.__context[key] = value;
+    }
+
+    for (let shape of this.#shapes) {
+      // don't override the fill property if it is set on shape
+      if (layerFill && !(shape.setProps().strictNotFill)) {
+        shape.setProps().shouldFill(layerFill);
+      }
+      shape.render();
+    }
+
+    // restore canvas state
+    this.__context.restore();
   }
 
   render (): Layer {
-    for (let shape of this.#shapes) {
-      shape.render();
+    if (this.#__mount) {
+      this._UNSTABLE__volatile__draw();
+      this.#__mount = false;
+    } else {
+      drawLayers(this.__context);
     }
     return this;
   }
-
 }

@@ -1,5 +1,5 @@
 import Vector from "../primitives/Vector";
-import { LineVectors, TriangleVectors, Shapes } from "../primitives/types";
+import { LineVectors, TriangleVectors, Shapes } from "../types";
 import Line from "../primitives/Line";
 import Triangle from "../primitives/Triangle";
 import Rectangle from "../primitives/Rectangle";
