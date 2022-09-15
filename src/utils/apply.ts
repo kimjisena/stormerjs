@@ -2,15 +2,15 @@ import StormTypes from "./symbols";
 import Element from "../types/Element";
 import Layer from "../types/Layer";
 
-function applyProps (shape: Element, ctx: CanvasRenderingContext2D) {
-  for (let [key, value] of shape.props.propsMap) {
+function applyProps (element: Element, ctx: CanvasRenderingContext2D) {
+  for (let [key, value] of element.props.propsMap) {
     ctx[key] = value;
   }
 }
 
-function applyTransforms (shape: Element, ctx: CanvasRenderingContext2D) {
+function applyTransforms (element: Element, ctx: CanvasRenderingContext2D) {
   // set the matrix transform
-  shape.transforms.transformActions.forEach(transform => {
+  element.transforms.transformActions.forEach(transform => {
     switch (transform.type) {
       case StormTypes.Translate:
         ctx.translate(transform.payload.x, transform.payload.y);
@@ -31,15 +31,15 @@ function syncLayer (layer: Layer) {
   let layerFill = layer.props.fill;
   let layerProps = layer.props.propsMap
 
-  for (let shape of layer.shapes) {
-    // don't override the fill property if it is set on shape
-    if (layerFill && !(shape.setProps().strictNotFill)) {
-      shape.setProps().shouldFill(layerFill);
+  for (let element of layer.elements) {
+    // don't override the fill property if it is set on element
+    if (layerFill && !(element.setProps().strictNotFill)) {
+      element.setProps().shouldFill(layerFill);
     }
 
     for (let [key, value] of layerProps) {
-      if (!shape.setProps().propsMap.has(key)) {
-        shape.setProps()[key](value);
+      if (!element.setProps().propsMap.has(key)) {
+        element.setProps()[key](value);
       }
     }
   }

@@ -5,8 +5,9 @@ export default interface Layer {
   id: string;
   props: Props;
   transforms: Transforms;
-  shapes: Set<Element>;
+  elements: Set<Element>;
 
-  addShape (shape: Element): Layer;
-  removeShape (shape: Element): Layer;
+  addElement (element: Element): Layer;
+  removeElement (element: Element): Layer;
+  clearLayer (): Layer;
 }

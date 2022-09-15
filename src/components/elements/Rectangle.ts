@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import Vector from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import Vector from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Rectangle {
   props: Props = new Props();
@@ -19,7 +19,7 @@ export default class Rectangle {
   }
 
   attachTo (layer: Layer): Rectangle {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 

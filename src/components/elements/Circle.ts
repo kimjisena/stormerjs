@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import Vector from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import Vector from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Circle {
   type: symbol = StormTypes.Circle;
@@ -17,7 +17,7 @@ export default class Circle {
   }
 
   attachTo (layer: Layer): Circle {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 

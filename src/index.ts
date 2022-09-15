@@ -1,13 +1,13 @@
 import { createRoot, createLayer } from "./core/stormProper";
-import Point from "./components/Point";
-import Line from "./components/Line";
-import Rectangle from "./components/Rectangle";
-import Triangle from "./components/Triangle";
-import Circle from "./components/Circle";
-import Arc from "./components/Arc";
-import Ellipse from "./components/Ellipse";
-import Curve from "./components/Curve";
-import Bezier from "./components/Bezier";
+import Point from "./components/elements/Point";
+import Line from "./components/elements/Line";
+import Rectangle from "./components/elements/Rectangle";
+import Triangle from "./components/elements/Triangle";
+import Circle from "./components/elements/Circle";
+import Arc from "./components/elements/Arc";
+import Ellipse from "./components/elements/Ellipse";
+import Curve from "./components/elements/Curve";
+import Bezier from "./components/elements/Bezier";
 import Vector from "./components/Vector";
 import { 
   createRectangle, 

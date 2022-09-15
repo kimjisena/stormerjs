@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import Vector from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import Vector from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Bezier {
   type: symbol = StormTypes.Bezier;
@@ -22,7 +22,7 @@ export default class Bezier {
   }
 
   attachTo (layer: Layer): Bezier {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 

@@ -1,27 +1,27 @@
 import StormTypes from "./symbols";
 
-export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
-  switch(shape.type) {
+export default function drawElement (element: any, ctx: CanvasRenderingContext2D) {
+  switch(element.type) {
     case StormTypes.Point:
       // draw point
-      ctx.moveTo(shape.vector.x, shape.vector.y);
-      ctx.lineTo(shape.vector.x + 1, shape.vector.y + 1);
+      ctx.moveTo(element.vector.x, element.vector.y);
+      ctx.lineTo(element.vector.x + 1, element.vector.y + 1);
       ctx.stroke();
       break;
 
     case StormTypes.Line:
       // draw line
       ctx.moveTo(
-        shape.lineVectors[0].x, 
-        shape.lineVectors[0].y
+        element.lineVectors[0].x, 
+        element.lineVectors[0].y
         );
-      for (let i = 1; i < shape.lineVectors.length; i++) {
+      for (let i = 1; i < element.lineVectors.length; i++) {
         ctx.lineTo(
-          shape.lineVectors[i].x, 
-          shape.lineVectors[i].y
+          element.lineVectors[i].x, 
+          element.lineVectors[i].y
           );
       }
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -31,12 +31,12 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
     case StormTypes.Rectangle:
       // draw rectangle
       ctx.rect(
-        shape.origin.x, 
-        shape.origin.y, 
-        shape.width, 
-        shape.height
+        element.origin.x, 
+        element.origin.y, 
+        element.width, 
+        element.height
       );
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -46,19 +46,19 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
     case StormTypes.Triangle:
       // draw triangle
       ctx.moveTo(
-        shape.triangleVectors.vec1.x, 
-        shape.triangleVectors.vec1.y
+        element.triangleVectors.vec1.x, 
+        element.triangleVectors.vec1.y
         );
       ctx.lineTo(
-        shape.triangleVectors.vec2.x, 
-        shape.triangleVectors.vec2.y
+        element.triangleVectors.vec2.x, 
+        element.triangleVectors.vec2.y
         );
       ctx.lineTo(
-        shape.triangleVectors.vec3.x, 
-        shape.triangleVectors.vec3.y
+        element.triangleVectors.vec3.x, 
+        element.triangleVectors.vec3.y
         );
       ctx.closePath();
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -68,17 +68,17 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
     case StormTypes.Ellipse:
       // draw an ellipse
       ctx.ellipse(
-        shape.center.x,
-        shape.center.y,
-        shape.width / 2,
-        shape.height / 2,
+        element.center.x,
+        element.center.y,
+        element.width / 2,
+        element.height / 2,
         0,
         0,
         2 * Math.PI,
         false,
       );
 
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -88,15 +88,15 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
     case StormTypes.Circle:
       // draw circle
       ctx.ellipse(
-        shape.center.x, 
-        shape.center.y, 
-        shape.radius,
-        shape.radius,
+        element.center.x, 
+        element.center.y, 
+        element.radius,
+        element.radius,
         0, 
         0, 2 * Math.PI, 
         false
       );
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -105,16 +105,16 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
 
     case StormTypes.Arc:
       // draw an arc
-      let start = degToRad(shape.startAngle);
-      let end = degToRad(shape.endAngle);
+      let start = degToRad(element.startAngle);
+      let end = degToRad(element.endAngle);
       ctx.arc(
-        shape.center.x, 
-        shape.center.y, 
-        shape.radius, 
+        element.center.x, 
+        element.center.y, 
+        element.radius, 
         start, end, 
-        shape.counterclockwise
+        element.counterclockwise
       );
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -123,14 +123,14 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
 
     case StormTypes.Curve:
       // draw a quadratic bezier curve
-      ctx.moveTo(shape.from.x, shape.from.y);
+      ctx.moveTo(element.from.x, element.from.y);
       ctx.quadraticCurveTo(
-        shape.anchor.x, 
-        shape.anchor.y, 
-        shape.to.x, 
-        shape.to.y
+        element.anchor.x, 
+        element.anchor.y, 
+        element.to.x, 
+        element.to.y
       );
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();
@@ -139,16 +139,16 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
 
     case StormTypes.Bezier:
       // draw a cubic bezier curve
-      ctx.moveTo(shape.from.x, shape.from.y);
+      ctx.moveTo(element.from.x, element.from.y);
       ctx.bezierCurveTo(
-        shape.anchorOne.x,
-        shape.anchorOne.y,
-        shape.anchorTwo.x,
-        shape.anchorTwo.y,
-        shape.to.x,
-        shape.to.y
+        element.anchorOne.x,
+        element.anchorOne.y,
+        element.anchorTwo.x,
+        element.anchorTwo.y,
+        element.to.x,
+        element.to.y
       );
-      if (shape.props.fill) {
+      if (element.props.fill) {
         ctx.fill();
       } else {
         ctx.stroke();

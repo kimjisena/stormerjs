@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import Vector from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import Vector from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Curve {
   type: symbol = StormTypes.Curve;
@@ -19,7 +19,7 @@ export default class Curve {
   }
 
   attachTo (layer: Layer): Curve {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 

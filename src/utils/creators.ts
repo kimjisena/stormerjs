@@ -1,12 +1,12 @@
-import Rectangle from "../components/Rectangle";
+import Rectangle from "../components/elements/Rectangle";
 import Vector from "../components/Vector";
-import Line from "../components/Line";
-import Triangle from "../components/Triangle";
-import Circle from "../components/Circle";
-import Curve from "../components/Curve";
-import Arc from "../components/Arc";
-import Bezier from "../components/Bezier";
-import Ellipse from "../components/Ellipse";
+import Line from "../components/elements/Line";
+import Triangle from "../components/elements/Triangle";
+import Circle from "../components/elements/Circle";
+import Curve from "../components/elements/Curve";
+import Arc from "../components/elements/Arc";
+import Bezier from "../components/elements/Bezier";
+import Ellipse from "../components/elements/Ellipse";
 import { LineVectors, TriangleVectors } from "../types/Vector";
 
 function createLineVectors (...coords: number[]): LineVectors {

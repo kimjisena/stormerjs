@@ -6,19 +6,24 @@ export default class Layer {
   id: string;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
-  shapes: Set<Element> = new Set();
+  elements: Set<Element> = new Set();
 
   constructor (id: number) {
     this.id = `Storm.Layer-${id}`;
   }
 
-  addShape (shape: Element): Layer {
-    this.shapes.add(shape);
+  addElement (element: Element): Layer {
+    this.elements.add(element);
     return this;
   }
 
-  removeShape (shape: Element): Layer {
-    this.shapes.delete(shape);
+  removeElement (element: Element): Layer {
+    this.elements.delete(element);
+    return this;
+  }
+
+  clearLayer (): Layer {
+    this.elements.clear();
     return this;
   }
 }

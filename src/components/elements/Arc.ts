@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import Vector from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import Vector from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Arc {
   type: symbol = StormTypes.Arc;
@@ -29,7 +29,7 @@ export default class Arc {
     this.counterclockwise = counterclockwise;
   }
   attachTo (layer: Layer): Arc {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 

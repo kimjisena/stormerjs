@@ -1,7 +1,7 @@
 import Layer from "../components/Layer";
 import layerKey from "../utils/layerKey";
 import Root from "../types/Root";
-import drawShape, { prepare, cleanUp } from "../utils/drawShape";
+import drawElement, { prepare, cleanUp } from "../utils/drawElement";
 import { applyProps, applyTransforms, syncLayer } from "../utils/apply";
 
 const __DOM_LAYERS: Map<symbol, CanvasRenderingContext2D> = new Map();
@@ -14,7 +14,7 @@ let width: number;
 let height: number;
 
 const __syncLayers = () => {
-  // apply layer props to shapes
+  // apply layer props to elements
   for (let layer of __INTERNAL_LAYERS) {
     syncLayer(layer);
   }
@@ -25,11 +25,11 @@ const __renderLayers = () => {
   for (let layer of __INTERNAL_LAYERS) {
     let ctx = __DOM_LAYERS.get(Symbol.for(layer.id));
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    for (let shape of layer.shapes) {
+    for (let element of layer.elements) {
       prepare(ctx);
-      applyProps(shape, ctx);
-      applyTransforms(shape, ctx);
-      drawShape(shape, ctx);
+      applyProps(element, ctx);
+      applyTransforms(element, ctx);
+      drawElement(element, ctx);
       cleanUp(ctx);
     }
   }

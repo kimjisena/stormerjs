@@ -1,8 +1,8 @@
-import StormTypes from "../utils/symbols";
-import Layer from "../types/Layer";
-import { LineVectors } from "../types/Vector";
-import Props from "../core/Props";
-import Transforms from "../core/Transforms";
+import StormTypes from "../../utils/symbols";
+import Layer from "../../types/Layer";
+import { LineVectors } from "../../types/Vector";
+import Props from "../../core/Props";
+import Transforms from "../../core/Transforms";
 
 export default class Line {
   type: symbol = StormTypes.Ellipse;
@@ -18,7 +18,7 @@ export default class Line {
   }
 
   attachTo (layer: Layer): Line {
-    layer.addShape(this);
+    layer.addElement(this);
     return this;
   }
 
