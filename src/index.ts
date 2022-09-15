@@ -9,6 +9,7 @@ import Ellipse from "./components/elements/Ellipse";
 import Curve from "./components/elements/Curve";
 import Bezier from "./components/elements/Bezier";
 import Vector from "./components/Vector";
+import Text from "./components/elements/Text";
 import { 
   createRectangle, 
   createArc, 
@@ -19,10 +20,11 @@ import {
   createLine,
   createLineVectors, 
   createTriangle, 
-  createTriangleVectors 
+  createTriangleVectors,
+  createText,
 } from "./utils/creators";
 
-export const Shapes = {
+export const Elements = {
   Point, 
   Line, 
   Rectangle, 
@@ -32,6 +34,7 @@ export const Shapes = {
   Ellipse, 
   Curve, 
   Bezier,
+  Text,
 };
 
 const Storm = {
@@ -47,6 +50,7 @@ const Storm = {
   createLineVectors, 
   createTriangle, 
   createTriangleVectors,
+  createText,
   Vector,
 }
 

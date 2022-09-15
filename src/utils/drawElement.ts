@@ -155,6 +155,24 @@ export default function drawElement (element: any, ctx: CanvasRenderingContext2D
       }
       break;
 
+    case StormTypes.Text:
+      // draw text
+      if (element.props.fill) {
+        ctx.fillText(
+          element.text, 
+          element.pos.x, 
+          element.pos.y, 
+          element.maxWidth
+        );
+      } else {
+        ctx.strokeText(
+          element.text, 
+          element.pos.x, 
+          element.pos.y, 
+          element.maxWidth
+        );
+      }
+
     default:
       break;
   }

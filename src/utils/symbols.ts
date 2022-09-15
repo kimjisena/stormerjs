@@ -1,4 +1,4 @@
-// Primitive shapes
+// Primitive elements
 const STORM_POINT = Symbol.for('Elements.Point');
 const STORM_LINE = Symbol.for('Elements.Line');
 const STORM_RECTANGLE = Symbol.for('Elements.Rectangle');
@@ -8,6 +8,7 @@ const STORM_ARC = Symbol.for('Elements.Arc');
 const STORM_ELLIPSE = Symbol.for('Elements.Ellipse');
 const STORM_CURVE = Symbol.for('Elements.Curve');
 const STORM_BEZIER = Symbol.for('Elements.Bezier');
+const STORM_TEXT = Symbol.for('Elements.Text');
 
 // Transform actions
 const STORM_TRANSLATE = Symbol.for('Transforms.Translate');
@@ -24,6 +25,7 @@ const StormTypes = {
   Ellipse: STORM_ELLIPSE, 
   Curve: STORM_CURVE, 
   Bezier: STORM_BEZIER,
+  Text: STORM_TEXT,
 
   Translate: STORM_TRANSLATE,
   Rotate: STORM_ROTATE,

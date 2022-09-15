@@ -7,6 +7,7 @@ import Curve from "../components/elements/Curve";
 import Arc from "../components/elements/Arc";
 import Bezier from "../components/elements/Bezier";
 import Ellipse from "../components/elements/Ellipse";
+import Text from "../components/elements/Text";
 import { LineVectors, TriangleVectors } from "../types/Vector";
 
 function createLineVectors (...coords: number[]): LineVectors {
@@ -144,12 +145,17 @@ function createBezier (
   return new Bezier(anchorOne, anchorTwo, from, to);
 }
 
+function createText (text: string, x: number, y: number, maxWidth?: number) {
+  let vector = new Vector(x, y);
+  return new Text(text, vector, maxWidth);
+}
+
 export {
   // vector creators
   createLineVectors, 
   createTriangleVectors,
 
-  // shape creators
+  // element creators
   createLine,
   createRectangle,
   createTriangle,
@@ -158,4 +164,5 @@ export {
   createArc,
   createCurve,
   createBezier,
+  createText,
 }
