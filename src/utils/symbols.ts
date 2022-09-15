@@ -10,9 +10,9 @@ const STORM_CURVE = Symbol.for('Shapes.Curve');
 const STORM_BEZIER = Symbol.for('Shapes.Bezier');
 
 // Transform actions
-const STORM_TRANSLATE = Symbol.for('Actions.Translate');
-const STORM_ROTATE = Symbol.for('Actions.Rotate');
-const STORM_SCALE = Symbol.for('Actions.Scale');
+const STORM_TRANSLATE = Symbol.for('Transforms.Translate');
+const STORM_ROTATE = Symbol.for('Transforms.Rotate');
+const STORM_SCALE = Symbol.for('Transforms.Scale');
 
 const StormTypes = {
   Point: STORM_POINT, 

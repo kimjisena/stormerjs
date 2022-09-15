@@ -1,13 +1,13 @@
-import Vector from "../primitives/Vector";
-import { LineVectors, TriangleVectors, Shapes } from "../types";
-import Line from "../primitives/Line";
-import Triangle from "../primitives/Triangle";
-import Rectangle from "../primitives/Rectangle";
-import Circle from "../primitives/Circle";
-import Ellipse from "../primitives/Ellipse";
-import Arc from "../primitives/Arc";
-import Curve from "../primitives/Curve";
-import Bezier from "../primitives/Bezier";
+import Rectangle from "../components/Rectangle";
+import Vector from "../components/Vector";
+import Line from "../components/Line";
+import Triangle from "../components/Triangle";
+import Circle from "../components/Circle";
+import Curve from "../components/Curve";
+import Arc from "../components/Arc";
+import Bezier from "../components/Bezier";
+import Ellipse from "../components/Ellipse";
+import { LineVectors, TriangleVectors } from "../types/Vector";
 
 function createLineVectors (...coords: number[]): LineVectors {
   const vectors: LineVectors = [];
@@ -53,7 +53,7 @@ function createTriangleVectors (...coords: number[]): TriangleVectors {
   return vectors;
 }
 
-function createLine (...coords: number[]): Shapes.Line {
+function createLine (...coords: number[]): Line {
   let vectors: LineVectors;
   try {
     vectors = createLineVectors(...coords);
@@ -62,18 +62,17 @@ function createLine (...coords: number[]): Shapes.Line {
   }
   return new Line(vectors);
 }
-
 function createRectangle (
   x: number, 
   y: number, 
   w: number, 
   h: number
-): Shapes.Rectangle {
+): Rectangle {
   let vector = new Vector(x, y);
   return new Rectangle(vector, w, h);
 }
 
-function createTriangle (...coords: number[]): Shapes.Triangle {
+function createTriangle (...coords: number[]): Triangle {
   let vectors: TriangleVectors;
   try {
     vectors = createTriangleVectors(...coords);
@@ -84,7 +83,7 @@ function createTriangle (...coords: number[]): Shapes.Triangle {
   return new Triangle(vectors);
 }
 
-function createCircle (x: number, y: number, rad: number): Shapes.Circle {
+function createCircle (x: number, y: number, rad: number): Circle {
   let vector = new Vector(x, y);
   return new Circle(vector, rad);
 }
@@ -94,7 +93,7 @@ function createEllipse (
   y: number, 
   w: number, 
   h: number
-): Shapes.Ellipse {
+): Ellipse {
   let vector = new Vector(x, y);
   return new Ellipse(vector, w, h);
 }
@@ -106,7 +105,7 @@ function createArc (
   startAngle: number, 
   endAngle: number, 
   counterclockwise?: boolean
-): Shapes.Arc {
+): Arc {
   let vector = new Vector(x, y);
 
   return new Arc(vector, rad, startAngle, endAngle, counterclockwise);
@@ -119,7 +118,7 @@ function createCurve (
   fromY: number,
   toX: number,
   toY: number
-): Shapes.Curve {
+): Curve {
   let anchor = new Vector(anchorX, anchorY);
   let from = new Vector(fromX, fromY);
   let to = new Vector(toX, toY);
@@ -136,7 +135,7 @@ function createBezier (
   fromY: number,
   toX: number,
   toY: number,
-): Shapes.Bezier {
+): Bezier {
   let anchorOne = new Vector(anchorOneX, anchorOneY);
   let anchorTwo = new Vector(anchorTwoX, anchorTwoY);
   let from = new Vector(fromX, fromY);

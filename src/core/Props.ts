@@ -1,4 +1,4 @@
-import { PropTypes } from "../types";
+import { PropTypes } from "../types/Settings";
 
 const keys =  {
   direction: 'direction',

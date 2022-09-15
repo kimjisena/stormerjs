@@ -1,36 +1,8 @@
-import Layer from "./primitives/layer";
-import Shapes, { Vector } from "./primitives/shapes";
-import { 
-  createLineVectors, 
-  createTriangleVectors, 
-  createLine,
-  createRectangle,
-  createTriangle,
-  createCircle,
-  createEllipse,
-  createArc,
-  createCurve,
-  createBezier
-} from "./utils/helpers";
-
-const Storm =  { 
-  Layer,
-  Shapes,
-  Vector,
-};
+import { createRoot, createLayer } from "./core/hazMat";
+import { createRectangle } from "./utils/creators";
 
 export {
-  createLineVectors,
-  createTriangleVectors,
-
-  createLine,
+  createRoot,
+  createLayer,
   createRectangle,
-  createTriangle,
-  createCircle,
-  createEllipse,
-  createArc,
-  createCurve,
-  createBezier,
 }
-
-export default Storm;
