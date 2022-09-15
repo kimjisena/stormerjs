@@ -14,7 +14,7 @@ export default class Point {
     this.vector = new Vector(x, y);
   }
 
-  attach (layer: Layer): Point {
+  attachTo (layer: Layer): Point {
     layer.addShape(this);
     return this;
   }

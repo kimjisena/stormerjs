@@ -18,7 +18,7 @@ export default class Rectangle {
     this.height = height;
   }
 
-  attach (layer: Layer): Rectangle {
+  attachTo (layer: Layer): Rectangle {
     layer.addShape(this);
     return this;
   }

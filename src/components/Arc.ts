@@ -28,7 +28,7 @@ export default class Arc {
     this.endAngle = endAngle;
     this.counterclockwise = counterclockwise;
   }
-  attach (layer: Layer): Arc {
+  attachTo (layer: Layer): Arc {
     layer.addShape(this);
     return this;
   }

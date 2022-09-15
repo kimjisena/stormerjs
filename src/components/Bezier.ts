@@ -21,7 +21,7 @@ export default class Bezier {
     this.to = to;
   }
 
-  attach (layer: Layer): Bezier {
+  attachTo (layer: Layer): Bezier {
     layer.addShape(this);
     return this;
   }

@@ -1,5 +1,3 @@
-import { PropTypes } from "../types/Settings";
-
 const keys =  {
   direction: 'direction',
   fillStyle: 'fillStyle',
@@ -29,7 +27,7 @@ const keys =  {
   wordSpacing: 'wordSpacing',
 };
 
-export default class Props implements PropTypes {
+export default class Props {
   #__props__: Map<string, any>;
   #fill: boolean = false;
   #__STRICT_NOT_FILL: boolean = false;
@@ -54,7 +52,7 @@ export default class Props implements PropTypes {
     return this.#__STRICT_NOT_FILL;
   }
 
-  shouldFill (value: boolean): PropTypes {
+  shouldFill (value: boolean): Props {
     if (!value) {
       this.#__STRICT_NOT_FILL = true;
     } else {
@@ -64,132 +62,132 @@ export default class Props implements PropTypes {
     return this;
   }
 
-  direction (value: string): PropTypes {
+  direction (value: string): Props {
     this.#__props__.set(keys.direction, value);
     return this;
   }
 
-  fillStyle (value: string): PropTypes {
+  fillStyle (value: string): Props {
     this.#__props__.set(keys.fillStyle, value);
     return this;
   }
 
-  filter (value: string): PropTypes {
+  filter (value: string): Props {
     this.#__props__.set(keys.filter, value);
     return this;
   }
 
-  font (value: string): PropTypes {
+  font (value: string): Props {
     this.#__props__.set(keys.font, value);
     return this;
   }
 
-  fontKerning (value: string): PropTypes {
+  fontKerning (value: string): Props {
     this.#__props__.set(keys.fontKerning, value);
     return this;
   }
 
-  fontStretch (value: string): PropTypes {
+  fontStretch (value: string): Props {
     this.#__props__.set(keys.fontStretch, value);
     return this;
   }
 
-  fontVariantCaps (value: string): PropTypes {
+  fontVariantCaps (value: string): Props {
     this.#__props__.set(keys.fontVariantCaps, value);
     return this;
   }
 
-  globalAlpha (value: number): PropTypes {
+  globalAlpha (value: number): Props {
     this.#__props__.set(keys.globalAlpha, value);
     return this;
   }
 
-  globalCompositeOperation (value: string): PropTypes {
+  globalCompositeOperation (value: string): Props {
     this.#__props__.set(keys.globalCompositeOperation, value);
     return this;
   }
 
-  imageSmoothingEnabled (value: boolean): PropTypes {
+  imageSmoothingEnabled (value: boolean): Props {
     this.#__props__.set(keys.imageSmoothingEnabled, value);
     return this;
   }
 
-  imageSmoothingQuality (value: string): PropTypes {
+  imageSmoothingQuality (value: string): Props {
     this.#__props__.set(keys.imageSmoothingQuality, value);
     return this;
   }
 
-  letterSpacing (value: string): PropTypes {
+  letterSpacing (value: string): Props {
     this.#__props__.set(keys.letterSpacing, value);
     return this;
   }
 
-  lineCap (value: string): PropTypes {
+  lineCap (value: string): Props {
     this.#__props__.set(keys.lineCap, value);
     return this;
   }
 
-  lineDashOffset (value: number): PropTypes {
+  lineDashOffset (value: number): Props {
     this.#__props__.set(keys.lineDashOffset, value);
     return this;
   }
 
-  lineJoin (value: string): PropTypes {
+  lineJoin (value: string): Props {
     this.#__props__.set(keys.lineJoin, value);
     return this;
   }
 
-  lineWidth (value: number): PropTypes {
+  lineWidth (value: number): Props {
     this.#__props__.set(keys.lineWidth, value);
     return this;
   }
 
-  miterLimit (value: number): PropTypes {
+  miterLimit (value: number): Props {
     this.#__props__.set(keys.miterLimit, value);
     return this;
   }
 
-  shadowBlur (value: number): PropTypes {
+  shadowBlur (value: number): Props {
     this.#__props__.set(keys.shadowBlur, value);
     return this;
   }
 
-  shadowColor (value: string): PropTypes {
+  shadowColor (value: string): Props {
     this.#__props__.set(keys.shadowColor, value);
     return this;
   }
 
-  shadowOffsetX (value: number): PropTypes {
+  shadowOffsetX (value: number): Props {
     this.#__props__.set(keys.shadowOffsetX, value);
     return this;
   }
 
-  shadowOffsetY (value: number): PropTypes {
+  shadowOffsetY (value: number): Props {
     this.#__props__.set(keys.shadowOffsetY, value);
     return this;
   }
 
-  strokeStyle (value: string): PropTypes {
+  strokeStyle (value: string): Props {
     this.#__props__.set(keys.strokeStyle, value);
     return this;
   }
 
-  textAlign (value: string): PropTypes {
+  textAlign (value: string): Props {
     this.#__props__.set(keys.textAlign, value);
     return this;
   }
 
-  textBaseline (value: string): PropTypes {
+  textBaseline (value: string): Props {
     this.#__props__.set(keys.textBaseline, value);
     return this;
   }
 
-  textRendering (value: string): PropTypes {
+  textRendering (value: string): Props {
     this.#__props__.set(keys.textRendering, value);
     return this;
   }
 
-  wordSpacing (value: string): PropTypes {
+  wordSpacing (value: string): Props {
     this.#__props__.set(keys.wordSpacing, value);
     return this;
   }

@@ -14,7 +14,7 @@ export default class Triangle {
     this.triangleVectors = vectors;
   }
   
-  attach (layer: Layer): Triangle {
+  attachTo (layer: Layer): Triangle {
     layer.addShape(this);
     return this;
   }

@@ -17,7 +17,7 @@ export default class Line {
     this.lineVectors = vectors;
   }
 
-  attach (layer: Layer): Line {
+  attachTo (layer: Layer): Line {
     layer.addShape(this);
     return this;
   }

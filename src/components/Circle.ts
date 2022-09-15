@@ -16,7 +16,7 @@ export default class Circle {
     this.radius = radius;
   }
 
-  attach (layer: Layer): Circle {
+  attachTo (layer: Layer): Circle {
     layer.addShape(this);
     return this;
   }

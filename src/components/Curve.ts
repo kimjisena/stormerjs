@@ -18,7 +18,7 @@ export default class Curve {
     this.to = to;
   }
 
-  attach (layer: Layer): Curve {
+  attachTo (layer: Layer): Curve {
     layer.addShape(this);
     return this;
   }

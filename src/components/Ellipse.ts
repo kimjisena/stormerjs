@@ -18,7 +18,7 @@ export default class Ellipse {
     this.height = height;
   }
 
-  attach (layer: Layer): Ellipse {
+  attachTo (layer: Layer): Ellipse {
     layer.addShape(this);
     return this;
   }

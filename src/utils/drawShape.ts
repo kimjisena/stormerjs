@@ -30,8 +30,6 @@ export default function drawShape (shape: any, ctx: CanvasRenderingContext2D) {
 
     case StormTypes.Rectangle:
       // draw rectangle
-
-      console.log('we are here');
       ctx.rect(
         shape.origin.x, 
         shape.origin.y, 

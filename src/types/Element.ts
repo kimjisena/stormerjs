@@ -6,7 +6,7 @@ export default interface Element {
   props: Props;
   transforms: Transforms;
 
-  attach (layer: Layer): Element;
+  attachTo (layer: Layer): Element;
   setTransforms (): Transforms;
   setProps (): Props;
 }
