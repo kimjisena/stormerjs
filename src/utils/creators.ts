@@ -8,6 +8,7 @@ import Arc from "../components/elements/Arc";
 import Bezier from "../components/elements/Bezier";
 import Ellipse from "../components/elements/Ellipse";
 import Text from "../components/elements/Text";
+import Image from "../components/elements/Image";
 import { LineVectors, TriangleVectors } from "../types/Vector";
 
 function createLineVectors (...coords: number[]): LineVectors {
@@ -66,11 +67,11 @@ function createLine (...coords: number[]): Line {
 function createRectangle (
   x: number, 
   y: number, 
-  w: number, 
-  h: number
-): Rectangle {
+  width: number, 
+  height: number
+  ): Rectangle {
   let vector = new Vector(x, y);
-  return new Rectangle(vector, w, h);
+  return new Rectangle(vector, width, height);
 }
 
 function createTriangle (...coords: number[]): Triangle {
@@ -92,11 +93,11 @@ function createCircle (x: number, y: number, rad: number): Circle {
 function createEllipse (
   x: number, 
   y: number, 
-  w: number, 
-  h: number
-): Ellipse {
+  width: number, 
+  height: number
+  ): Ellipse {
   let vector = new Vector(x, y);
-  return new Ellipse(vector, w, h);
+  return new Ellipse(vector, width, height);
 }
 
 function createArc (
@@ -106,7 +107,7 @@ function createArc (
   startAngle: number, 
   endAngle: number, 
   counterclockwise?: boolean
-): Arc {
+  ): Arc {
   let vector = new Vector(x, y);
 
   return new Arc(vector, rad, startAngle, endAngle, counterclockwise);
@@ -119,7 +120,7 @@ function createCurve (
   fromY: number,
   toX: number,
   toY: number
-): Curve {
+  ): Curve {
   let anchor = new Vector(anchorX, anchorY);
   let from = new Vector(fromX, fromY);
   let to = new Vector(toX, toY);
@@ -135,8 +136,8 @@ function createBezier (
   fromX: number,
   fromY: number,
   toX: number,
-  toY: number,
-): Bezier {
+  toY: number
+  ): Bezier {
   let anchorOne = new Vector(anchorOneX, anchorOneY);
   let anchorTwo = new Vector(anchorTwoX, anchorTwoY);
   let from = new Vector(fromX, fromY);
@@ -145,9 +146,65 @@ function createBezier (
   return new Bezier(anchorOne, anchorTwo, from, to);
 }
 
-function createText (text: string, x: number, y: number, maxWidth?: number) {
+function createText (
+  text: string, 
+  x: number, 
+  y: number, 
+  maxWidth?: number
+  ): Text {
   let vector = new Vector(x, y);
   return new Text(text, vector, maxWidth);
+}
+function createImage (
+  url: string, 
+  dx: number, 
+  dy: number
+  ): Image
+function createImage (
+  url: string, 
+  dx: number, 
+  dy: number, 
+  dw: number, 
+  dh: number
+  ): Image 
+function createImage (
+  url: string, 
+  sx: number, 
+  sy: number, 
+  sw: number, 
+  sh: number, 
+  dx: number, 
+  dy: number, 
+  dw: number, 
+  dh: number
+  ): Image
+function createImage (
+  url: string, 
+  dx: number, 
+  dy: number, 
+  dw?: number, 
+  dh?: number, 
+  sx?: number, 
+  sy?: number, 
+  sw?: number, 
+  sh?: number
+  ): Image {
+  let dpos: Vector, 
+      spos: Vector = null;
+
+  dpos = new Vector(dx, dy);
+
+  if (sx && sy) {
+    spos = new Vector(sx, sy);     
+  }
+
+  if (dpos && spos) {
+    return new Image(url, spos, sw, sh, dpos, dw, dh);
+  } else if (dpos && dw && dh) {
+    return new Image(url, dpos, dw, dh);
+  } else {
+    return new Image(url, dpos);
+  }
 }
 
 export {
@@ -165,4 +222,5 @@ export {
   createCurve,
   createBezier,
   createText,
+  createImage,
 }

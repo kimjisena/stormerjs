@@ -10,6 +10,7 @@ import Curve from "./components/elements/Curve";
 import Bezier from "./components/elements/Bezier";
 import Vector from "./components/Vector";
 import Text from "./components/elements/Text";
+import Image from "./components/elements/Image";
 import { 
   createRectangle, 
   createArc, 
@@ -22,6 +23,7 @@ import {
   createTriangle, 
   createTriangleVectors,
   createText,
+  createImage,
 } from "./utils/creators";
 
 export const Elements = {
@@ -35,11 +37,13 @@ export const Elements = {
   Curve, 
   Bezier,
   Text,
+  Image,
 };
 
 const Storm = {
   createRoot,
   createLayer,
+  
   createRectangle,
   createArc, 
   createBezier, 
@@ -51,6 +55,7 @@ const Storm = {
   createTriangle, 
   createTriangleVectors,
   createText,
+  createImage,
   Vector,
 }
 

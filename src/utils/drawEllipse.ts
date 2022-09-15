@@ -1,0 +1,20 @@
+import Ellipse from "../components/elements/Ellipse";
+
+export default function drawEllipse (element: Ellipse, ctx: CanvasRenderingContext2D): void {
+  ctx.ellipse(
+    element.center.x,
+    element.center.y,
+    element.width / 2,
+    element.height / 2,
+    0,
+    0,
+    2 * Math.PI,
+    false,
+  );
+
+  if (element.props.fill) {
+    ctx.fill();
+  } else {
+    ctx.stroke();
+  }
+}

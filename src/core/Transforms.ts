@@ -32,8 +32,4 @@ export default class Transforms {
   get transformActions (): Array<any> {
     return this.#__transforms__;
   }
-
-  set transformActions (value: Array<any>) {
-    this.#__transforms__ = [...value];
-  }
 }

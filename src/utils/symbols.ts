@@ -9,6 +9,7 @@ const STORM_ELLIPSE = Symbol.for('Elements.Ellipse');
 const STORM_CURVE = Symbol.for('Elements.Curve');
 const STORM_BEZIER = Symbol.for('Elements.Bezier');
 const STORM_TEXT = Symbol.for('Elements.Text');
+const STORM_IMAGE = Symbol.for('Elements.Image');
 
 // Transform actions
 const STORM_TRANSLATE = Symbol.for('Transforms.Translate');
@@ -26,6 +27,7 @@ const StormTypes = {
   Curve: STORM_CURVE, 
   Bezier: STORM_BEZIER,
   Text: STORM_TEXT,
+  Image: STORM_IMAGE,
 
   Translate: STORM_TRANSLATE,
   Rotate: STORM_ROTATE,
