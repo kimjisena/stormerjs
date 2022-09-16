@@ -8,7 +8,6 @@ export default class Bezier {
   type: symbol = StormTypes.Bezier;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
-  layer: Layer;
   anchorOne: Vector;
   anchorTwo: Vector;
   from: Vector;

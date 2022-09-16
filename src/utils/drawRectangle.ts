@@ -1,6 +1,6 @@
-import Rectangle from "../components/elements/Rectangle";
+import Element from "../types/Element";
 
-export default function drawRectangle (element: Rectangle, ctx: CanvasRenderingContext2D): void {
+export default function drawRectangle (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.rect(
     element.origin.x, 
     element.origin.y, 

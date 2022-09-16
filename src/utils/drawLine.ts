@@ -1,6 +1,6 @@
-import Line from "../components/elements/Line";
+import Element from "../types/Element";
 
-export default function drawLine (element: Line, ctx: CanvasRenderingContext2D): void {
+export default function drawLine (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.moveTo(
     element.lineVectors[0].x, 
     element.lineVectors[0].y

@@ -1,6 +1,6 @@
-import Ellipse from "../components/elements/Ellipse";
+import Element from "../types/Element";
 
-export default function drawEllipse (element: Ellipse, ctx: CanvasRenderingContext2D): void {
+export default function drawEllipse (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.ellipse(
     element.center.x,
     element.center.y,

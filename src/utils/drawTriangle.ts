@@ -1,6 +1,5 @@
-import Triangle from "../components/elements/Triangle";
-
-export default function drawTriangle (element: Triangle, ctx: CanvasRenderingContext2D): void {
+import Element from "../types/Element";
+export default function drawTriangle (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.moveTo(
     element.triangleVectors.vec1.x, 
     element.triangleVectors.vec1.y

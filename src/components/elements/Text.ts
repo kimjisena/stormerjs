@@ -9,12 +9,12 @@ export default class Text {
   transforms: Transforms = new Transforms();
   type: symbol = StormTypes.Text;
   text: string;
-  pos: Vector;
+  origin: Vector;
   maxWidth: number;
 
   constructor (text: string, pos: Vector, maxWidth?: number) {
     this.text = text;
-    this.pos = pos;
+    this.origin = pos;
     this.maxWidth = maxWidth;
   }
 

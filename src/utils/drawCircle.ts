@@ -1,6 +1,6 @@
-import Circle from "../components/elements/Circle";
+import Element from "../types/Element";
 
-export default function drawCircle (element: Circle, ctx: CanvasRenderingContext2D): void {
+export default function drawCircle (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.ellipse(
     element.center.x, 
     element.center.y, 

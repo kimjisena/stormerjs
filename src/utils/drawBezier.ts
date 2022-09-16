@@ -1,6 +1,6 @@
-import Bezier from "../components/elements/Bezier";
+import Element from "../types/Element";
 
-export default function drawBezier (element: Bezier, ctx: CanvasRenderingContext2D): void {
+export default function drawBezier (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.moveTo(element.from.x, element.from.y);
   ctx.bezierCurveTo(
     element.anchorOne.x,

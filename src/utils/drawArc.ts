@@ -1,10 +1,10 @@
-import Arc from "../components/elements/Arc";
+import Element from "../types/Element";
 
 function degToRad (deg: number): number {
   return (Math.PI / 180) * deg;
 }
 
-export default function drawArc (element: Arc, ctx: CanvasRenderingContext2D): void {
+export default function drawArc (element: Element, ctx: CanvasRenderingContext2D): void {
   let start = degToRad(element.startAngle);
   let end = degToRad(element.endAngle);
   ctx.arc(

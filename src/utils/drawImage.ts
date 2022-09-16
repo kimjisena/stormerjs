@@ -1,5 +1,6 @@
+import Element from "../types/Element";
 
-export default function drawImage (element: any, ctx: CanvasRenderingContext2D): void {
+export default function drawImage (element: Element, ctx: CanvasRenderingContext2D): void {
   if (element.dpos && element.spos) {
     ctx.drawImage(
       element.image,

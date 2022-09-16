@@ -5,7 +5,7 @@ import Props from "../../core/Props";
 import Transforms from "../../core/Transforms";
 
 export default class Triangle {
-  type: symbol = StormTypes.Ellipse;
+  type: symbol = StormTypes.Triangle;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
   triangleVectors: TriangleVectors;

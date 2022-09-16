@@ -8,7 +8,6 @@ export default class Arc {
   type: symbol = StormTypes.Arc;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
-  layer: Layer;
   center: Vector;
   radius: number;
   startAngle: number;

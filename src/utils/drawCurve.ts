@@ -1,6 +1,6 @@
-import Curve from "../components/elements/Curve";
+import Element from "../types/Element";
 
-export default function drawCurve (element: Curve, ctx: CanvasRenderingContext2D): void {
+export default function drawCurve (element: Element, ctx: CanvasRenderingContext2D): void {
   ctx.moveTo(element.from.x, element.from.y);
   ctx.quadraticCurveTo(
     element.anchor.x, 

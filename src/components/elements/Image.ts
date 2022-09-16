@@ -10,7 +10,6 @@ export default class Image {
   type: symbol = StormTypes.Image;
   image: HTMLImageElement;
   hasLoaded: boolean = false;
-
   spos: Vector;
   sw: number;
   sh: number;
