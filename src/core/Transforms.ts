@@ -1,7 +1,9 @@
 import STORMER_SYMBOLS from "../utils/symbols";
+import degToScale from "../utils/degToScale";
 import Vector from "../components/Vector";
 
-function createAction(type: symbol, payload: number | Vector): any {
+
+function createAction(type: symbol, payload: any): any {
   return { type, payload };
 }
 
@@ -18,12 +20,12 @@ export default class Transforms {
     return this;
   }
 
-  rotate(angle: number): Transforms {
+  rotate (angle: number): Transforms {
     this.#__transforms__.push(createAction(STORMER_SYMBOLS.Rotate, this.degToRad(angle)));
     return this;
   }
 
-  scale(x: number, y: number): Transforms {
+  scale (x: number, y: number): Transforms {
     let vector = new Vector(x, y);
     this.#__transforms__.push(createAction(STORMER_SYMBOLS.Scale, vector));
     return this;

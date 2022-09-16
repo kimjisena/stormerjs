@@ -1,7 +1,7 @@
 {
-  "name": "storm",
+  "name": "stormerjs",
   "version": "1.0.0",
-  "description": "Declarative drawing with Canvas API",
+  "description": "Declarative 2D drawing on HTML Canvas",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "canvas",
-    "graphics"
+    "2D",
+    "declarative",
+    "stormerjs"
   ],
   "author": "Kim Jisena",
   "license": "MIT"

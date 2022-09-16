@@ -1,4 +1,4 @@
-import StormTypes from "./symbols";
+import STORM_SYMBOLS from "./symbols";
 import Element from "../types/Element";
 import Layer from "../types/Layer";
 
@@ -12,13 +12,13 @@ function applyTransforms (element: Element, ctx: CanvasRenderingContext2D) {
   // set the matrix transform
   element.transforms.transformActions.forEach(transform => {
     switch (transform.type) {
-      case StormTypes.Translate:
+      case STORM_SYMBOLS.Translate:
         ctx.translate(transform.payload.x, transform.payload.y);
         break;
-      case StormTypes.Rotate:
+      case STORM_SYMBOLS.Rotate:
         ctx.rotate(transform.payload);
         break;
-      case StormTypes.Scale:
+      case STORM_SYMBOLS.Scale:
         ctx.scale(transform.payload.x, transform.payload.y);
         break;
       default:

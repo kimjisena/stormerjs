@@ -1,1 +1,7 @@
-# Storm - A React-inspired drawing library based on HTML5 Canvas.
+# stormerjs - Declarative 2D drawing on HTML Canvas
+
+## About stormerjs
+## Quick start
+## Documentation
+## Contributing
+## License

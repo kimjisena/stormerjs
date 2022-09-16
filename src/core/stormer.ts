@@ -7,22 +7,15 @@ import { applyProps, applyTransforms, syncLayer } from "../utils/apply";
 const __DOM_LAYERS: Map<symbol, CanvasRenderingContext2D> = new Map();
 const __STORMER_LAYERS: Layer[] = [];
 
-let __PARENT: HTMLElement;
 let STORMER_ROOT: CanvasRenderingContext2D;
 let __index: number = 0;
 let width: number;
 let height: number;
 
-const __syncLayers = () => {
-  // apply layer props to elements
+const __renderLayers = () => {
+  // render layers to their underlying contexts
   for (let layer of __STORMER_LAYERS) {
     syncLayer(layer);
-  }
-}
-
-const __renderLayers = () => {
-  // render layers to their underlying DOM contexts
-  for (let layer of __STORMER_LAYERS) {
     let ctx = __DOM_LAYERS.get(Symbol.for(layer.id));
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (let element of layer.elements) {
@@ -38,22 +31,29 @@ const __renderLayers = () => {
 }
 
 const $__$: Root = {
-  render () {
+  render (): Root {
     // clear the STORMER_ROOT Layer
     STORMER_ROOT.clearRect(0, 0, STORMER_ROOT.canvas.width, STORMER_ROOT.canvas.height);
-    __syncLayers();
     __renderLayers();
     return this;
+  },
+  addEventListener (type: string, listener: (ev: any) => any, options?: any): Root {
+    STORMER_ROOT.canvas.addEventListener(type, listener, options);
+    return this;
+  },
+  removeEventListener (type: string, listener: (ev: any) => any, options?: any): Root {
+    STORMER_ROOT.canvas.removeEventListener(type, listener, options);
+    return this;
+  },
+  unstable_GetUnderlyingContext (): CanvasRenderingContext2D {
+    return STORMER_ROOT;
   },
 }
 
 function createRoot (id: string, w: number = 300, h: number = 300): Root {
-  STORMER_ROOT = document.createElement('canvas').getContext('2d');
+  STORMER_ROOT = (document.getElementById(id) as HTMLCanvasElement).getContext('2d');
   width = STORMER_ROOT.canvas.width = w;
   height = STORMER_ROOT.canvas.height = h;
-  __PARENT = document.getElementById(id);
-  __PARENT.appendChild(STORMER_ROOT.canvas);
-
   return $__$;
 }
 

@@ -1,16 +1,8 @@
+/**
+ * Find something you love, then let it kill you.
+ */
+
 import { createRoot, createLayer } from "./core/stormer";
-import Point from "./components/elements/Point";
-import Line from "./components/elements/Line";
-import Rectangle from "./components/elements/Rectangle";
-import Triangle from "./components/elements/Triangle";
-import Circle from "./components/elements/Circle";
-import Arc from "./components/elements/Arc";
-import Ellipse from "./components/elements/Ellipse";
-import Curve from "./components/elements/Curve";
-import Bezier from "./components/elements/Bezier";
-import Vector from "./components/Vector";
-import Text from "./components/elements/Text";
-import Image from "./components/elements/Image";
 import { 
   createRectangle, 
   createArc, 
@@ -25,20 +17,6 @@ import {
   createText,
   createImage,
 } from "./utils/creators";
-
-export const Elements = {
-  Point, 
-  Line, 
-  Rectangle, 
-  Triangle, 
-  Circle, 
-  Arc, 
-  Ellipse, 
-  Curve, 
-  Bezier,
-  Text,
-  Image,
-};
 
 const Stormer = {
   createRoot,
@@ -56,7 +34,6 @@ const Stormer = {
   createTriangleVectors,
   createText,
   createImage,
-  Vector,
 }
 
 export default Stormer;
