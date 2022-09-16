@@ -1,13 +1,13 @@
 import Props from "../../core/Props";
 import Transforms from "../../core/Transforms";
-import StormTypes from "../../utils/symbols";
+import STORMER_SYMBOLS from "../../utils/symbols";
 import Layer from "../../types/Layer";
 import Vector from "../Vector";
 
 export default class Image {
   props: Props = new Props();
   transforms: Transforms = new Transforms();
-  type: symbol = StormTypes.Image;
+  type: symbol = STORMER_SYMBOLS.Image;
   image: HTMLImageElement;
   hasLoaded: boolean = false;
   spos: Vector;

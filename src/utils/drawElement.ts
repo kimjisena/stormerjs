@@ -1,4 +1,4 @@
-import StormTypes from "./symbols";
+import STORMER_SYMBOLS from "./symbols";
 import drawImage from "./drawImage";
 import drawText from "./drawText";
 import drawBezier from "./drawBezier";
@@ -14,47 +14,47 @@ import Element from "../types/Element";
 
 export default function drawElement (element: Element, ctx: CanvasRenderingContext2D) {
   switch(element.type) {
-    case StormTypes.Point:
+    case STORMER_SYMBOLS.Point:
       drawPoint(element, ctx);
       break;
 
-    case StormTypes.Line:
+    case STORMER_SYMBOLS.Line:
       drawLine(element, ctx);
       break;
 
-    case StormTypes.Rectangle:
+    case STORMER_SYMBOLS.Rectangle:
       drawRectangle(element, ctx);
       break;
 
-    case StormTypes.Triangle:
+    case STORMER_SYMBOLS.Triangle:
       drawTriangle(element, ctx);
       break;
 
-    case StormTypes.Ellipse:
+    case STORMER_SYMBOLS.Ellipse:
       drawEllipse(element, ctx);
       break;
 
-    case StormTypes.Circle:
+    case STORMER_SYMBOLS.Circle:
       drawCircle(element, ctx);
       break;
 
-    case StormTypes.Arc:
+    case STORMER_SYMBOLS.Arc:
       drawArc(element, ctx);
       break;
 
-    case StormTypes.Curve:
+    case STORMER_SYMBOLS.Curve:
       drawCurve(element, ctx);
       break;
 
-    case StormTypes.Bezier:
+    case STORMER_SYMBOLS.Bezier:
       drawBezier(element, ctx);
       break;
 
-    case StormTypes.Text:
+    case STORMER_SYMBOLS.Text:
       drawText(element, ctx);
       break;
 
-    case StormTypes.Image:
+    case STORMER_SYMBOLS.Image:
       if (element.hasLoaded) {
         drawImage(element, ctx);
         break;

@@ -1,11 +1,11 @@
-import StormTypes from "../../utils/symbols";
+import STORMER_SYMBOLS from "../../utils/symbols";
 import Layer from "../../types/Layer";
 import Vector from "../../types/Vector";
 import Props from "../../core/Props";
 import Transforms from "../../core/Transforms";
 
 export default class Ellipse {
-  type: symbol = StormTypes.Ellipse;
+  type: symbol = STORMER_SYMBOLS.Ellipse;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
   center: Vector;

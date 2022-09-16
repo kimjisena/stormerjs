@@ -1,4 +1,4 @@
-import StormTypes from "../utils/symbols";
+import STORMER_SYMBOLS from "../utils/symbols";
 import Vector from "../components/Vector";
 
 function createAction(type: symbol, payload: number | Vector): any {
@@ -14,18 +14,18 @@ export default class Transforms {
 
   translate (x: number, y: number): Transforms {
     let vector = new Vector(x, y);
-    this.#__transforms__.push(createAction(StormTypes.Translate, vector));
+    this.#__transforms__.push(createAction(STORMER_SYMBOLS.Translate, vector));
     return this;
   }
 
   rotate(angle: number): Transforms {
-    this.#__transforms__.push(createAction(StormTypes.Rotate, this.degToRad(angle)));
+    this.#__transforms__.push(createAction(STORMER_SYMBOLS.Rotate, this.degToRad(angle)));
     return this;
   }
 
   scale(x: number, y: number): Transforms {
     let vector = new Vector(x, y);
-    this.#__transforms__.push(createAction(StormTypes.Scale, vector));
+    this.#__transforms__.push(createAction(STORMER_SYMBOLS.Scale, vector));
     return this;
   }
 

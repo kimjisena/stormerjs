@@ -1,11 +1,11 @@
-import StormTypes from "../../utils/symbols";
+import STORMER_SYMBOLS from "../../utils/symbols";
 import Layer from "../../types/Layer";
 import { TriangleVectors } from "../../types/Vector";
 import Props from "../../core/Props";
 import Transforms from "../../core/Transforms";
 
 export default class Triangle {
-  type: symbol = StormTypes.Triangle;
+  type: symbol = STORMER_SYMBOLS.Triangle;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
   triangleVectors: TriangleVectors;

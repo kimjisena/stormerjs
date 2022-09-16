@@ -1,4 +1,4 @@
-import StormTypes from "../../utils/symbols";
+import STORMER_SYMBOLS from "../../utils/symbols";
 import Layer from "../../types/Layer";
 import Vector from "../Vector";
 import Props from "../../core/Props";
@@ -7,7 +7,7 @@ import Transforms from "../../core/Transforms";
 export default class Point {
   props: Props = new Props();
   transforms: Transforms = new Transforms();
-  type: symbol = StormTypes.Rectangle;
+  type: symbol = STORMER_SYMBOLS.Rectangle;
   vector: Vector;
 
   constructor (x: number, y: number) {

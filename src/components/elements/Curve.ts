@@ -1,11 +1,11 @@
-import StormTypes from "../../utils/symbols";
+import STORMER_SYMBOLS from "../../utils/symbols";
 import Layer from "../../types/Layer";
 import Vector from "../../types/Vector";
 import Props from "../../core/Props";
 import Transforms from "../../core/Transforms";
 
 export default class Curve {
-  type: symbol = StormTypes.Curve;
+  type: symbol = STORMER_SYMBOLS.Curve;
   props: Props = new Props();
   transforms: Transforms = new Transforms();
   anchor: Vector;

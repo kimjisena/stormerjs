@@ -9,7 +9,7 @@ export default class Layer {
   elements: Set<Element> = new Set();
 
   constructor (id: number) {
-    this.id = `Storm.Layer-${id}`;
+    this.id = `Stormer.Layer-${id}`;
   }
 
   addElement (element: Element): Layer {

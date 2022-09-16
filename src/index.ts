@@ -1,4 +1,4 @@
-import { createRoot, createLayer } from "./core/stormProper";
+import { createRoot, createLayer } from "./core/stormer";
 import Point from "./components/elements/Point";
 import Line from "./components/elements/Line";
 import Rectangle from "./components/elements/Rectangle";
@@ -40,7 +40,7 @@ export const Elements = {
   Image,
 };
 
-const Storm = {
+const Stormer = {
   createRoot,
   createLayer,
   
@@ -59,4 +59,4 @@ const Storm = {
   Vector,
 }
 
-export default Storm;
+export default Stormer;
