@@ -1,5 +1,4 @@
 import STORMER_SYMBOLS from "../utils/symbols";
-import degToScale from "../utils/degToScale";
 import Vector from "../components/Vector";
 
 
