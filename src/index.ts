@@ -11,9 +11,7 @@ import {
   createCurve, 
   createEllipse, 
   createLine,
-  createLineVectors, 
   createTriangle, 
-  createTriangleVectors,
   createText,
   createImage,
 } from "./utils/creators";
@@ -29,9 +27,7 @@ const Stormer = {
   createCurve, 
   createEllipse, 
   createLine,
-  createLineVectors, 
   createTriangle, 
-  createTriangleVectors,
   createText,
   createImage,
 }

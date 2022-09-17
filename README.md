@@ -1,6 +1,6 @@
 # Stormer - Declarative 2D drawing and animation
 ## About Stormer
-Stormer (named after *Loki Stormbringer*, a character in Daniel Suarez's *Daemon* series) is a JavaScript library that wraps over the HTML5 Canvas API. It enables declarative drawing by recording "intents" and replaying them later. Stormer currently supports 2D drawing and animation.
+Stormer (named after *Loki Stormbringer*, a character in Dan Suarez's *Daemon* series) is a JavaScript library that wraps over the HTML5 Canvas API. It enables declarative drawing by recording "intents" and replaying them later. Stormer currently supports 2D drawing and animation.
 
 ## Quick start
 You can install Stormer using the package manager of your choice.
@@ -69,11 +69,11 @@ Stormer is a canvas library in the sense that React is a UI library. This means,
 Stormer should work with any UI library/framework. Consult the [docs](./docs/) for further information.
 
 ## Documentation
+For those who want a hands-on approach, I encourage you to browse the [examples](./examples/) directory.
+
+For full Stormer documentation and API reference, click [here](./docs/)
+
 The author of Stormer barely comments his code, though he strives for clean and simple code. One could learn all about Stormer by browsing the [src](./src/) directory. The source code is self-documenting.
-
-Also, one could benefit greatly by browsing the [examples](./examples/) directory.
-
-Nonetheless, for full Stormer documentation and API reference, click [here](./docs/)
 
 ## Bugs & Issues
 Stormer is not behaving as you expected? It could be a bug, open an issue. 
@@ -81,7 +81,11 @@ Stormer is not behaving as you expected? It could be a bug, open an issue.
 You have an idea for a feature or any extension to Stormer? Open an issue or go ahead and PR.
 
 ## Contributing
-Stormer is a work in a progress, just as all software is. Pull requests are encouraged.
+Stormer is a work in progress, just as all software is. Pull requests are encouraged for the following:
+- Optimizations
+- New features
+- Documentation
+- Examples
 
 ## License
 Stormer is MIT-licensed free and open source software. You can read the license [here](./LICENSE.txt)

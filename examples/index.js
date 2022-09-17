@@ -1,5 +1,6 @@
 import Stormer from './dist/index';
-
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('bitmaprenderer')
 function draw () {
   let root = Stormer.createRoot('canvas');
   let layer0 = Stormer.createLayer();
@@ -69,7 +70,7 @@ function draw () {
    .rotate(-2);
    root.render();
  }
-// requestAnimationFrame(animate);
+requestAnimationFrame(animate);
 }
 
 draw();
