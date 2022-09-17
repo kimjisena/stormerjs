@@ -82,7 +82,7 @@ You have an idea for a feature or any extension to Stormer? Open an issue or go 
 
 ## Contributing
 Stormer is a work in progress, just as all software is. Pull requests are encouraged for the following:
-- Optimizations
+- Optimization
 - New features
 - Documentation
 - Examples
