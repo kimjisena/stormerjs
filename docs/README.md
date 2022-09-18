@@ -101,9 +101,27 @@ In Stormer, all elements are stroked by default (except `Image`s which do not ne
 
 On to layers.
 ### `Stormer.Layer`
-- stacking contexts
+A layer is a collection of at least one element. In fact, Stormer requires grouping elements into layers. Element instances expose `Element.attachTo()` method which takes a layer instance as an argument to which the element will be attached.
 
-- grouping of elements
+Continuing from above, here is how we create a layer and attach our elements to it.
+```js
+const layerOne = Stormer.createLayer();
+
+circle.attachTo(layerOne);
+rect.attachTo(layerOne);
+```
+It is important to note that detached elements will not be rendered in Stormer.
+
+One can create as many layers as needed. Layers expose `Layer.setProps()` and `Layer.setTransforms()` methods that allow setting properties and transformations that apply to all elements attached to the layer.
+
+For instance, let's say all elements on `layerOne` are going to have a line width of $4px$. Instead of setting this prop on each element (which could be hundreds of elements), we set the prop on the layer.
+```js
+layerOne.setProps()
+  .lineWidth(4);
+```
+Now `circle` and `rect` will have a line width of $4px$. Just like in elements, Stormer guarantees that props and transforms applied to one layer do not affect other layers.
+
+In addition to grouping elements together, layers provide a stacking context in which layers created last will be rendered on top of other layers. Also, layers are pre-rendered. This means asynchronous sources of pixel data like images will be rendered on the correct layer and in the correct order.
 
 ### `Stormer.Root`
 ### When To Render
