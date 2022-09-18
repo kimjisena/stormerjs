@@ -124,6 +124,22 @@ Now `circle` and `rect` will have a line width of $4px$. Just like in elements, 
 In addition to grouping elements together, layers provide a stacking context in which layers created last will be rendered on top of other layers. Also, layers are pre-rendered. This means asynchronous sources of pixel data like images will be rendered on the correct layer and in the correct order.
 
 ### `Stormer.Root`
+When elements and layers are created, Stormer doesn't render them immediately. In fact, creating elements is like telling Stormer we intend to render that element, but we may not render it. 
+
+To commit our intentions to render, we call `Root.render()`. The Stormer object exposes a `Stormer.createRoot()` method that we use to create our root. This method takes one required argument, which is an `id` of our canvas element. In addition, `Stormer.createRoot()` takes two optional arguments that specify the size of our canvas.
+
+In the code snippet below, we create a root and call `render()` on it (We proceed from above).
+```js
+const root = Stormer.createRoot('mycanvas');
+
+root.render();
+```
+The above code will render our `circle` and `rect` elements on `layerOne`, with the styles and transforms we specified.
+
+You can think of `Root` as a Stormer representation of the canvas element. Whenever we update or create new "intentations", we have to call the `render()` method. We can call this method as many times as we'd like to update our rendered graphics.
+
 ### When To Render
-### Integrating With UI Libraries
+Each call to `Root.render()` is in effect a commit. It is unlikely that one will call this method only onece. Stormer gives the developer the liberty to render at will. Whenever you feel like you are ready to commit your intentations, call render. This is so convenient especially when animating objects using a `requestAnimationFrame()` callback.
 ## API Reference
+## Miscellaneous
+### Stormer with React
