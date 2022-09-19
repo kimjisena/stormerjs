@@ -37,14 +37,6 @@ const $__$: Root = {
     __renderLayers();
     return this;
   },
-  addEventListener (type: string, listener: (ev: any) => any, options?: any): Root {
-    STORMER_ROOT.canvas.addEventListener(type, listener, options);
-    return this;
-  },
-  removeEventListener (type: string, listener: (ev: any) => any, options?: any): Root {
-    STORMER_ROOT.canvas.removeEventListener(type, listener, options);
-    return this;
-  },
   unstable_GetUnderlyingContext (): CanvasRenderingContext2D {
     return STORMER_ROOT;
   },

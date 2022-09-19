@@ -8,11 +8,11 @@ This document assumes some familiarity with the Canvas API. If that's not the ca
 ## Installation
 Stormer is available on the npm registry. You can install Stormer using the package manager of your choice.
 
-**Using `npm`**
+### Using `npm`
 
 - `$ npm i stormer`
 
-**Using `yarn`**
+### Using `yarn`
 
 - `$ yarn add stormer`
 ## Main Concepts
@@ -140,6 +140,81 @@ You can think of `Root` as a Stormer representation of the canvas element. Whene
 
 ### When To Render
 Each call to `Root.render()` is in effect a commit. It is unlikely that one will call this method only onece. Stormer gives the developer the liberty to render at will. Whenever you feel like you are ready to commit your intentations, call render. This is so convenient especially when animating objects using a `requestAnimationFrame()` callback.
+
 ## API Reference
+The Stormer object exposes factory methods for creating root, elements and layers as documented below. This object has everything one needs to interact with the Stormer library.
+
+### `Stormer.Root`
+#### **Factory**
+`Stormer.createRoot(id: string, w?: number, h?: number): Root`
+
+- `id` - The `id` of the target canvas element.
+- `w` - Optional width of the canvas element. Defaults to 300.
+- `h` - Optional height of the canvas element. Defaults to 150.
+- Returns an instance of `Root`, a wrapper over the canvas element.
+
+Example:
+```js
+import Stormer from "stormer";
+
+const root = Stormer.createRoot('mycanvas', 300, 300);
+```
+#### **Methods**
+`Root.render(): Root`
+
+- The `render()` method of the `Root` instance renders all elements that have been created before it was called. It returns the `Root` instance.
+
+Example:
+```js
+import Stormer from "stormer";
+
+const root = Stormer.createRoot('mycanvas', 300, 300);
+
+// create some elements and layers here
+
+root.render();
+
+// create (or remove) some more elements
+
+root.render();
+```
+
+`Root.unstable_GetUnderlyingContext(): CanvasRenderingContext2D`
+
+- The `unstable_GetUnderlyingContext()` method of the `Root` instance returns the underlying 2D context. This is useful for stuff like text metrics and image data.
+- The method is marked `unstable` because it could be changed in the near future. One doesn't necessarily need to access the context directly to get the image data.
+- Don't use this method to draw on the canvas directly because the resulting render will be unpredictable.
+- In addition, avoid drawing text on the canvas if you can help it. You can use HTML for that.
+
+Example:
+```js
+import Stormer from "stormer";
+
+const root = Stormer.createRoot('mycanvas', 300, 300);
+
+const ctx = root.unstable_GetUnderlyingContext();
+
+// get image data of the whole canvas
+const imgData = ctx.getImageData(0, 0, 300, 300).data;
+
+// get text metrics
+const txtMetrics = ctx.measureText('Hello, Canvas!');
+```
+
+### `Props`
+### `Transforms`
+### `Stormer.Layer`
+### `Stormer.Element`
+#### `Stormer.Point`
+#### `Stormer.Line`
+#### `Stormer.Rectangle`
+#### `Stormer.Circle`
+#### `Stormer.Arc`
+#### `Stormer.Ellipse`
+#### `Stormer.Curve`
+#### `Stormer.Bezier`
+#### `Stormer.Text`
+#### `Stormer.Image`
+
 ## Miscellaneous
 ### Stormer with React
