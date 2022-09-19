@@ -15,6 +15,7 @@ Stormer is available on the npm registry. You can install Stormer using the pack
 ### Using `yarn`
 
 - `$ yarn add stormer`
+
 ## Main Concepts
 The Canvas API brings proper graphics to the web. It's now possible to develop immersive applications with JavaScript which are just as performant as native applications.
 
@@ -48,6 +49,7 @@ The Canvas API exposes useful methods for working with the Canvas context. There
 Again, I recommend consulting the Mozilla Developer's Network for further details and API reference.
 
 And now, let's see what Stormer brings to the table.
+
 ### `Stormer.Element`
 Stormer elements are primitives that can be combined in different ways to produce graphics of varying complexity. Stormer has nine 2D primitive elements: `Point`, `Line`, `Arc`, `Circle`, `Ellipse`, `Rectangle`, `Triangle`, `Curve` and `Bezier`. In addition to those, there are two elements for drawing text and images respectively: `Text` and `Image`.
 
@@ -100,6 +102,7 @@ We further instruct Stormer to fill our rectangle red. The `shouldFill()` method
 In Stormer, all elements are stroked by default (except `Image`s which do not need filling or stroking).
 
 On to layers.
+
 ### `Stormer.Layer`
 A layer is a collection of at least one element. In fact, Stormer requires grouping elements into layers. Element instances expose `Element.attachTo()` method which takes a layer instance as an argument to which the element will be attached.
 
@@ -144,6 +147,10 @@ Each call to `Root.render()` is in effect a commit. It is unlikely that one will
 ## API Reference
 The Stormer object exposes factory methods for creating root, elements and layers as documented below. This object has everything one needs to interact with the Stormer library.
 
+```js
+import Stormer from "stormer";
+```
+
 ### `Stormer.Root`
 #### **Factory**
 `Stormer.createRoot(id: string, w?: number, h?: number): Root`
@@ -155,21 +162,15 @@ The Stormer object exposes factory methods for creating root, elements and layer
 
 Example:
 ```js
-import Stormer from "stormer";
-
 const root = Stormer.createRoot('mycanvas', 300, 300);
 ```
 #### **Methods**
-`Root.render(): Root`
+`render (): Root`
 
 - The `render()` method of the `Root` instance renders all elements that have been created before it was called. It returns the `Root` instance.
 
 Example:
 ```js
-import Stormer from "stormer";
-
-const root = Stormer.createRoot('mycanvas', 300, 300);
-
 // create some elements and layers here
 
 root.render();
@@ -179,7 +180,7 @@ root.render();
 root.render();
 ```
 
-`Root.unstable_GetUnderlyingContext(): CanvasRenderingContext2D`
+`unstable_GetUnderlyingContext (): CanvasRenderingContext2D`
 
 - The `unstable_GetUnderlyingContext()` method of the `Root` instance returns the underlying 2D context. This is useful for stuff like text metrics and image data.
 - The method is marked `unstable` because it could be changed in the near future. One doesn't necessarily need to access the context directly to get the image data.
@@ -188,10 +189,6 @@ root.render();
 
 Example:
 ```js
-import Stormer from "stormer";
-
-const root = Stormer.createRoot('mycanvas', 300, 300);
-
 const ctx = root.unstable_GetUnderlyingContext();
 
 // get image data of the whole canvas
@@ -202,6 +199,73 @@ const txtMetrics = ctx.measureText('Hello, Canvas!');
 ```
 
 ### `Props`
+A `Props` instance is created whenever an element or a layer is created. We get access to the `Props` instance by calling `setProps()` on an element or a layer. The `Props` object exposes methods for styling and transforming the canvas context.
+
+These methods are named after the properties of the underlying `CanvasRenderingContext2DSettings` object (except for `shouldFill()`) and for that reason, most of the content in this section has been copied over from Mozilla Developer's Network.
+
+#### **Methods**
+`shouldFill (value: boolean): Props`
+- `value` - `true` if Stormer should fill the element. Defaults to `false`.
+- The `shouldFill()` method is used to tell Stormer to fill a particular element even if it is in a layer whose styling is stroke. By default, Stormer strokes all elements.
+
+Example:
+```js
+// a `circle` element that we want it to be filled
+circle.setProps()
+  .shouldFill(true);
+```
+
+`direction (value: string): Props`
+
+`fillStyle (value: string): Props`
+
+`filter (value: string): Props`
+
+`font (value: string): Props`
+
+`fontKerning (value: string): Props`
+
+`fontStretch (value: string): Props`
+
+`fontVariantCaps (value: string): Props`
+
+`globalAlpha (value: number): Props`
+
+`globalCompositeOperation (value: string): Props`
+
+`imageSmoothingEnabled (value: boolean): Props`
+
+`imageSmoothingQuality (value: string): Props`
+
+`letterSpacing (value: string): Props`
+
+`lineCap (value: string): Props`
+
+`lineDashOffset (value: number): Props`
+
+`lineJoin (value: string): Props`
+
+`lineWidth (value: number): Props`
+
+`miterLimit (value: number): Props`
+
+`shadowBlur (value: number): Props`
+
+`shadowColor (value: string): Props`
+
+`shadowOffsetX (value: number): Props`
+
+`shadowOffsetY (value: number): Props`
+
+`strokeStyle (value: string): Props`
+
+`textAlign (value: string): Props`
+
+`textBaseline (value: string): Props`
+
+`textRendering (value: string): Props`
+
+`wordSpacing (value: string): Props`
 ### `Transforms`
 ### `Stormer.Layer`
 ### `Stormer.Element`
