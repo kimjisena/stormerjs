@@ -3,7 +3,7 @@
     "module": "ESNext",
     "target": "es2015",
     "declaration": true,
-    "outDir": "./examples/dist"
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*"

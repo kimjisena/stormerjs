@@ -10,11 +10,11 @@ Stormer is available on the npm registry. You can install Stormer using the pack
 
 ### Using `npm`
 
-- `$ npm i stormer`
+- `$ npm i stormerjs`
 
 ### Using `yarn`
 
-- `$ yarn add stormer`
+- `$ yarn add stormerjs`
 
 ## Main Concepts
 The Canvas API brings proper graphics to the web. It's now possible to develop immersive applications with JavaScript which are just as performant as native applications.
@@ -55,7 +55,7 @@ Stormer elements are primitives that can be combined in different ways to produc
 
 Each element above has a factory method that is exposed by the `Stormer` object.
 ```js
-import Stormer from 'stormer';
+import Stormer from 'stormerjs';
 ```
 The factory methods have the name of the element prefixed with `create`. So, a method for creating a `Circle` is named `Stormer.createCircle`.
 
@@ -218,6 +218,7 @@ circle.props
 ```
 
 `direction (value: string): Props`
+- `value` - 
 
 `fillStyle (value: string): Props`
 
@@ -407,13 +408,204 @@ layerOne.clearLayer();
 `Stormer.createText (): Text`
 
 `Stormer.createImage (): Image`
+
 #### **Properties**
-`props: Props`
+`props: Props` 
+- A `Props` instance used to set properties to be applied on the element.
+
+Example:
+```js
+circle.props
+  .strokeStyle('red');
+```
+For information about methods available on the `Props` object, read the [`Props`](#props) section above.
 
 `transforms: Transforms`
+- A `Transforms` instance used to set transformations for a given element.
 
-#### Methods
+Example:
+
+The code below rotate the the Canvas coordinate system by 45 degrees (clockwise). The rendered `rect` will appear inclined.
+```js
+rect.transforms
+  .rotate(45);
+```
+For information about methods available on the `Transforms` object, read the [`Transforms`](#transforms) section above.
+
+#### **Methods**
 `attachTo (layer: Layer): Element`
+- `layer` - A `Layer` instance to which this element should be attached.
+- Returns the element instance.
+
+**Note:** As seen in the [Layer](#stormerlayer-1) section above, one could also use the `addElement()` method of the layer instance to attach an element to a layer instance. The difference between these two methods is in what object we're focusing on. 
+
+The `attachTo()` method allows us to focus on the `Element` rather than the layer. Using `attachTo()` instead of `addElement()` is recommended although both methods achieve the same thing.
 
 ## Miscellaneous
+Since Stormer doesn't touch the DOM, it can be used with any UI library/framework.
+
 ### Stormer with React
+To use Stormer with React, follow the following steps:
+
+1. Create a React component that renders a canvas element. 
+
+For instance, let's say our file is named `./src/components/Canvas.js`
+
+Function component:
+```js
+// ./src/components/Canvas.js
+
+export default function Canvas () {
+  return (
+    <canvas id="mycanvas" />
+  );
+}
+```
+
+Class component:
+```js
+// ./src/components/Canvas.js
+
+class Canvas extends React.Component {
+  render () {
+    return (
+      <canvas id="mycanvas" />
+    );
+  }
+}
+```
+2. Give Stormer access to the canvas element. 
+
+We have to make sure that React has mounted our `Canvas` component, so we will do this in a `useEffect` hook for our function component. For our class component, we do that in `componentDidMount` method.
+
+Function component:
+```js
+// ./src/components/Canvas.js
+
+import { useEffect, useState } from "react";
+import Stormer from "stormerjs";
+
+export default function Canvas () {
+  const [root, setRoot] = useState(null);
+
+  useEffect(() => {
+    setRoot(Stormer.createRoot("mycanvas"));
+  }, [root]);
+
+  return (
+    <canvas id="mycanvas" />
+  );
+}
+```
+
+Class component:
+```js
+// ./src/components/Canvas.js
+
+import Stormer from "stormerjs";
+
+class Canvas extends React.Component {
+  state = {
+    root: null,
+  };
+
+  componentDidMount () {
+    this.setState({
+      root: Stormer.createRoot("mycanvas")
+    });
+  }
+
+  render () {
+    return (
+      <canvas id="mycanvas" />
+    );
+  }
+}
+```
+
+We tie our `root` to the component state so that React re-renders our component when root is created.
+
+3. Now we can start drawing.
+
+Let's say we have a file named `./src/gfx/main.js` that contains our graphics code. The file looks like this:
+
+```js
+// ./src/gfx/main.js
+
+import Stormer from "stormerjs";
+
+export default function main (root) {
+  const layer = Stormer.createLayer();
+  const rect = Stormer.createRect(10, 10, 100, 100);
+
+  rect.props
+    .strokeStyle('blue')
+    .lineWidth(5);
+
+  root.render();
+}
+```
+
+All we have to do is import our `main` function into our `Canvas` element and invoke it if `root` has been created.
+
+For the function component, we add an if check in the `useEffect` hook, and for the class component we use the `componentDidUpdate` method.
+
+Function component:
+```js
+// ./src/components/Canvas.js
+
+import { useEffect, useState } from "react";
+import Stormer from "stormerjs";
+import main from "../gfx/main";
+
+export default function Canvas () {
+  const [root, setRoot] = useState(null);
+
+  useEffect(() => {
+    setRoot(Stormer.createRoot('mycanvas'));
+
+    if (root) {
+      main(root);
+    }
+
+  }, [root]);
+
+  return (
+    <canvas id="mycanvas" />
+  );
+}
+```
+
+Class component:
+```js
+// ./src/components/Canvas.js
+
+import Stormer from "stormerjs";
+import main from "../gfx/main";
+
+class Canvas extends React.Component {
+  state = {
+    root: null,
+  };
+
+  componentDidMount () {
+    this.setState({
+      root: Stormer.createRoot('mycanvas')
+    });
+  }
+
+  componentDidUpdate () {
+    main(this.state.root);
+  }
+
+  render () {
+    return (
+      <canvas id="mycanvas" />
+    );
+  }
+}
+```
+
+The code above works if our `Canvas` element doesn't have other dependencies like `props` that could trigger re-renders. Nonetheless, it should be easy to adapt the setup shown above to any React project. 
+
+For instance, one could define the `main` function inside the function component so that it can see `props` and `state` and respond accordingly (this could be a method on a class component). Any code that doesn't need to know about the current state of the `Canvas` component should be kept out of the `./src/components/Canvas.js` file.

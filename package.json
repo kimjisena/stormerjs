@@ -1,7 +1,7 @@
 {
   "name": "stormerjs",
   "version": "1.0.0",
-  "description": "Declarative 2D drawing on HTML Canvas",
+  "description": "Declarative 2D Graphics on HTML5 Canvas",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
