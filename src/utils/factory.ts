@@ -1,5 +1,6 @@
 import Rectangle from "../components/elements/Rectangle";
 import Vector from "../components/Vector";
+import Point from "../components/elements/Point";
 import Line from "../components/elements/Line";
 import Triangle from "../components/elements/Triangle";
 import Circle from "../components/elements/Circle";
@@ -53,6 +54,10 @@ function createTriangleVectors (...coords: number[]): TriangleVectors {
   }
 
   return vectors;
+}
+
+function createPoint (x: number, y: number): Point {
+  return new Point(x, y);
 }
 
 function createLine (...coords: number[]): Line {
@@ -213,6 +218,7 @@ export {
   createTriangleVectors,
 
   // element creators
+  createPoint,
   createLine,
   createRectangle,
   createTriangle,
