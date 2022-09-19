@@ -218,57 +218,106 @@ circle.props
 ```
 
 `direction (value: string): Props`
-- `value` - 
+Specifies the current text direction used to draw text.
+- `value` - `"ltr"` | `"rtl"` | `"inherit"`. Defaults to `"inherit"`
 
 `fillStyle (value: string): Props`
+- Color or style to use inside shapes.
+- Default `#000` (black).
 
 `filter (value: string): Props`
+- Applies a CSS or SVG filter to the canvas, e.g., to change its brightness or blurriness.
 
 `font (value: string): Props`
+- Font setting. Default value `"10px sans-serif"`.
 
 `fontKerning (value: string): Props`
+- Font kerning. 
+- Possible values: `"auto"` (default), `"normal"`, `"none".
 
 `fontStretch (value: string): Props`
+- Font stretch. 
+- Possible values: `"ultra-condensed"`, `"extra-condensed"`, `"condensed"`, `"semi-condensed"`, `"normal"` (default), `"semi-expanded"`, `"expanded"`, `"extra-expanded"`, `"ultra-expanded"`.
 
 `fontVariantCaps (value: string): Props`
+- Font variant caps. 
+- Possible values: `"normal"` (default), `"small-caps"`, `"all-small-caps"`, `"petite-caps"`, `"all-petite-caps"`, `"unicase"`, `"titling-caps"`.
 
 `globalAlpha (value: number): Props`
+- Alpha value that is applied to shapes and images before they are composited onto the canvas. 
+- Default 1.0 (opaque).
 
 `globalCompositeOperation (value: string): Props`
+- With globalAlpha applied this sets how shapes and images are drawn onto the existing bitmap.
 
 `imageSmoothingEnabled (value: boolean): Props`
+Image smoothing mode; if disabled, images will not be smoothed if scaled.
 
 `imageSmoothingQuality (value: string): Props`
+Allows you to set the quality of image smoothing.
 
 `letterSpacing (value: string): Props`
+- Letter spacing. 
+- Default: `"0px"`.
 
 `lineCap (value: string): Props`
+- Type of endings on the end of lines. 
+- Possible values: `"butt"` (default), `"round"`, `"square"`.
 
 `lineDashOffset (value: number): Props`
+- Specifies where to start a dash array on a line.
 
 `lineJoin (value: string): Props`
+- Defines the type of corners where two lines meet. 
+- Possible values: `"round"`, `"bevel"`, `"miter"` (default).
 
 `lineWidth (value: number): Props`
+- Width of lines. 
+- Default 1.0.
 
 `miterLimit (value: number): Props`
+- Miter limit ratio. 
+- Default 10.
 
 `shadowBlur (value: number): Props`
+- Specifies the blurring effect. 
+- Default: 0.
 
 `shadowColor (value: string): Props`
+- Color of the shadow. 
+- Default: fully-transparent black.
 
 `shadowOffsetX (value: number): Props`
+- Horizontal distance the shadow will be offset.
+- Default: 0.
 
 `shadowOffsetY (value: number): Props`
+- Vertical distance the shadow will be offset.
+- Default: 0.
 
 `strokeStyle (value: string): Props`
+- Color or style to use for the lines around shapes. 
+- Default `#000` (black).
 
 `textAlign (value: string): Props`
+- Text alignment setting.
+
+- Possible values: `"start"` (default), `"end"`, `"left"`, `"right"`, `"center"`.
 
 `textBaseline (value: string): Props`
+- Baseline alignment setting.
+
+- Possible values: `"top"`, `"hanging"`, `"middle"`, `"alphabetic"` (default), `"ideographic"`, `"bottom"`.
 
 `textRendering (value: string): Props`
+- Text rendering. 
+- Possible values: `"auto"` (default), `"optimizeSpeed"`, `"optimizeLegibility"`, `"geometricPrecision"`.
 
 `wordSpacing (value: string): Props`
+- Word spacing. 
+- Default value: `0px`
+
+See [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) for a complete coverage of these properties (and more).
 
 ### `Transforms`
 Just like the `Props` object, each element and layer gets an instance of the `Transforms` object upon creation. The `Transforms` object exposes methods for performing transformations on the canvas element.
@@ -391,6 +440,7 @@ layerOne.clearLayer();
 #### **Factory**
 `Stormer.createPoint (): Point`
 
+
 `Stormer.createLine (): Line`
 
 `Stormer.createRectangle (): Rectangle`
@@ -503,7 +553,7 @@ Function component:
 ```js
 // ./src/components/Canvas.js
 
-import { useEffect} from "react";
+import { useEffect } from "react";
 import Stormer from "stormerjs";
 import main from "../gfx/main";
 
