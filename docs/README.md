@@ -203,6 +203,8 @@ A `Props` instance is created whenever an element or a layer is created. We get 
 
 These methods are named after the properties of the underlying `CanvasRenderingContext2DSettings` object (except for `shouldFill()`) and for that reason, most of the content in this section has been copied over from Mozilla Developer's Network.
 
+All methods of the `Props` object return the `Props` instance to enable method chaining.
+
 #### **Methods**
 `shouldFill (value: boolean): Props`
 - `value` - `true` if Stormer should fill the element. Defaults to `false`.
@@ -266,7 +268,53 @@ circle.setProps()
 `textRendering (value: string): Props`
 
 `wordSpacing (value: string): Props`
+
 ### `Transforms`
+Just like the `Props` object, each element and layer gets an instance of the `Transforms` object upon creation. The `Transforms` object exposes methods for performing transformations on the canvas element.
+
+To get access to the `Transforms` instance, we call `setTransforms()` on an element or layer. Method calls on the Transforms object can be chained, just like `Props` method calls.
+
+#### **Methods**
+`translate (x: number, y: number): Transforms`
+- `x` - Units to translate the origin by, horizontally.
+- `y` - Units to translate the origin by, vertically.
+- Returns the same instance of the `Transforms` object.
+- This method is used to move the origin of the Canvas coordinate system.
+
+Example:
+```js
+// say we want a `rect` element to be drawn relative to a new origin (10, 15)
+
+rect.setTransforms()
+  .translate(10, 15);
+```
+
+`rotate (angle: number): Transforms`
+- `angle` - Angle (in degrees) by which to rotate the Canvas coordinate system about the origin.
+- Returns the same instance of the `Transforms` object.
+- This method is used to rotate the Canvas coordinate system so that objects appear to be inclined at an angle.
+
+Example:
+```js
+// say we want a `rect` element to be drawn at 45 degrees
+rect.setTransforms()
+  .rotate(45);
+```
+
+`scale (x: number, y: number): Transforms`
+- `x` - Units to scale the coordinate system by, horizontally.
+- `y` - Units to scale the coordinate system by, vertically.
+- Returns the same instance of the `Transforms` object.
+- Negative values flip the coordinate system and values less than 1 scale down.
+
+Example:
+```js
+// say we want to use the familiar Cartesian coordinate system to draw a `rect` element
+rect.setTransforms()
+  .translate(0, 300) // take the origin to the bottom of the canvas
+  .scale(1, -1); // then flip the y-axis so that values increase going up
+```
+
 ### `Stormer.Layer`
 ### `Stormer.Element`
 #### `Stormer.Point`

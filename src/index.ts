@@ -14,7 +14,7 @@ import {
   createTriangle, 
   createText,
   createImage,
-} from "./utils/creators";
+} from "./utils/factory";
 
 const Stormer = {
   createRoot,

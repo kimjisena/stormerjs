@@ -1,4 +1,5 @@
 import STORMER_SYMBOLS from "../utils/symbols";
+import degToRad from "../utils/degToRad";
 import Vector from "../components/Vector";
 
 
@@ -9,10 +10,6 @@ function createAction(type: symbol, payload: any): any {
 export default class Transforms {
   #__transforms__: Array<any> = [];
 
-  degToRad (deg: number): number {
-    return (Math.PI / 180) * deg
-  }
-
   translate (x: number, y: number): Transforms {
     let vector = new Vector(x, y);
     this.#__transforms__.push(createAction(STORMER_SYMBOLS.Translate, vector));
@@ -20,7 +17,7 @@ export default class Transforms {
   }
 
   rotate (angle: number): Transforms {
-    this.#__transforms__.push(createAction(STORMER_SYMBOLS.Rotate, this.degToRad(angle)));
+    this.#__transforms__.push(createAction(STORMER_SYMBOLS.Rotate, degToRad(angle)));
     return this;
   }
 

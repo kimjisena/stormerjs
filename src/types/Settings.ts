@@ -35,7 +35,6 @@ interface Props {
 interface Transforms {
   transformActions: Array<any>;
 
-  degToRad (deg: number): number;
   translate (x: number, y: number): Transforms;
   rotate (angle: number): Transforms;
   scale (x: number, y: number): Transforms;
