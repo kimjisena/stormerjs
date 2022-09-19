@@ -32,21 +32,6 @@ const __renderLayers = () => {
 
 const $__$: Root = {
   render (): Root {
-    // check if STOMMER_ROOT.canvas is not an orphan node
-    // This code handles state updates and re-renders by UI libraries such as React
-    if (!STORMER_ROOT.canvas.parentNode) {
-      // clear the STORMER_ROOT Layer
-      STORMER_ROOT.clearRect(0, 0, STORMER_ROOT.canvas.width, STORMER_ROOT.canvas.height);
-
-      // drop the layers
-      __DOM_LAYERS.clear();
-
-      // reset __index
-      __index = 0;
-
-      // and return
-      return this;
-    }
     // clear the STORMER_ROOT Layer
     STORMER_ROOT.clearRect(0, 0, STORMER_ROOT.canvas.width, STORMER_ROOT.canvas.height);
     __renderLayers();

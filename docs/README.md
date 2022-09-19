@@ -466,7 +466,7 @@ Class component:
 ```js
 // ./src/components/Canvas.js
 
-class Canvas extends React.Component {
+export default class Canvas extends React.Component {
   render () {
     return (
       <canvas id="mycanvas" />
@@ -476,56 +476,7 @@ class Canvas extends React.Component {
 ```
 2. Give Stormer access to the canvas element. 
 
-We have to make sure that React has mounted our `Canvas` component, so we will do this in a `useEffect` hook for our function component. For our class component, we do that in `componentDidMount` method.
-
-Function component:
-```js
-// ./src/components/Canvas.js
-
-import { useEffect, useState } from "react";
-import Stormer from "stormerjs";
-
-export default function Canvas () {
-  const [root, setRoot] = useState(null);
-
-  useEffect(() => {
-    setRoot(Stormer.createRoot("mycanvas"));
-  }, [root]);
-
-  return (
-    <canvas id="mycanvas" />
-  );
-}
-```
-
-Class component:
-```js
-// ./src/components/Canvas.js
-
-import Stormer from "stormerjs";
-
-class Canvas extends React.Component {
-  state = {
-    root: null,
-  };
-
-  componentDidMount () {
-    this.setState({
-      root: Stormer.createRoot("mycanvas")
-    });
-  }
-
-  render () {
-    return (
-      <canvas id="mycanvas" />
-    );
-  }
-}
-```
-
-We tie our `root` to the component state so that React re-renders our component when root is created.
-
-3. Now we can start drawing.
+We have to make sure that React has mounted our `Canvas` component, so we will do this in a `useEffect` hook for our function component. For our class component, we do that in `componentDidMount` method. Then we can start drawing.
 
 Let's say we have a file named `./src/gfx/main.js` that contains our graphics code. The file looks like this:
 
@@ -546,29 +497,22 @@ export default function main (root) {
 }
 ```
 
-All we have to do is import our `main` function into our `Canvas` element and invoke it if `root` has been created.
-
-For the function component, we add an if check in the `useEffect` hook, and for the class component we use the `componentDidUpdate` method.
+All we have to do is import our `main` function into our `Canvas` element and invoke it.
 
 Function component:
 ```js
 // ./src/components/Canvas.js
 
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import Stormer from "stormerjs";
 import main from "../gfx/main";
 
 export default function Canvas () {
-  const [root, setRoot] = useState(null);
 
   useEffect(() => {
-    setRoot(Stormer.createRoot('mycanvas'));
-
-    if (root) {
-      main(root);
-    }
-
-  }, [root]);
+    const root = Stormer.createRoot('mycanvas');
+    main(root);
+  }, []);
 
   return (
     <canvas id="mycanvas" />
@@ -584,18 +528,10 @@ import Stormer from "stormerjs";
 import main from "../gfx/main";
 
 class Canvas extends React.Component {
-  state = {
-    root: null,
-  };
 
   componentDidMount () {
-    this.setState({
-      root: Stormer.createRoot('mycanvas')
-    });
-  }
-
-  componentDidUpdate () {
-    main(this.state.root);
+    const root = Stormer.createRoot('mycanvas');
+    main(root);
   }
 
   render () {
@@ -605,7 +541,4 @@ class Canvas extends React.Component {
   }
 }
 ```
-
-The code above works if our `Canvas` element doesn't have other dependencies like `props` that could trigger re-renders. Nonetheless, it should be easy to adapt the setup shown above to any React project. 
-
-For instance, one could define the `main` function inside the function component so that it can see `props` and `state` and respond accordingly (this could be a method on a class component). Any code that doesn't need to know about the current state of the `Canvas` component should be kept out of the `./src/components/Canvas.js` file.
+As a general, use the `useEffect` hook or the `componentDidMount` method when wiring Stormer into React.
