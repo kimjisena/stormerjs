@@ -30,7 +30,7 @@ const rectOne = Stormer.createRectangle(
     100, 100
     ).attachTo(layerOne);
 
-rectOne.setProps()
+rectOne.props
   .fillStyle('violet')
   .shouldFill(true);
 
@@ -40,7 +40,7 @@ const rectTwo = Stormer.createRectangle(
     100, 100
     ).attachTo(layerTwo);
 
-rectTwo.setProps()
+rectTwo.props()
   .fillStyle('orange')
   .shouldFill(true);
 

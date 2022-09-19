@@ -13,7 +13,7 @@ function draw () {
     100, 100
     ).attachTo(layer1);
 
-  rect0.setProps()
+  rect0.props
   .fillStyle('violet')
   .shouldFill(true);
 
@@ -22,7 +22,7 @@ function draw () {
     100, 100
     ).attachTo(layer2);
 
-  rect1.setProps()
+  rect1.props
   .fillStyle('orange')
   .shouldFill(true);
  root.render();
@@ -36,12 +36,12 @@ function draw () {
    -(delta), 
    140, 140).attachTo(layer0);
  // some props
- rect2.setProps()
+ rect2.props
    .lineWidth(6)
    .strokeStyle('red');
 
  // translate the origin
- rect2.setTransforms()
+ rect2.transforms
    .translate(delta + margin, delta + margin)
    .scale(.5, .5);
 
@@ -51,22 +51,22 @@ function draw () {
    -(delta), 
    140, 140).attachTo(layer3);
  // some props
- rect3.setProps()
+ rect3.props
    .lineWidth(6)
    .strokeStyle('green');
 
  // translate the origin
- rect3.setTransforms()
+ rect3.transforms
    .translate(delta + margin, delta + margin);
 
  // root.render();
 
  function animate (raf) {
    let handle = requestAnimationFrame(animate);
-   rect2.setTransforms()
+   rect2.transforms
    .rotate(2);
 
-   rect3.setTransforms()
+   rect3.transforms
    .rotate(-2);
    root.render();
  }

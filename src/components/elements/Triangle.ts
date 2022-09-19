@@ -18,12 +18,4 @@ export default class Triangle {
     layer.addElement(this);
     return this;
   }
-
-  setTransforms (): Transforms {
-    return this.transforms;
-  }
-
-  setProps (): Props {
-    return this.props;
-  }
 }

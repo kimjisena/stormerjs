@@ -53,7 +53,7 @@ And now, let's see what Stormer brings to the table.
 ### `Stormer.Element`
 Stormer elements are primitives that can be combined in different ways to produce graphics of varying complexity. Stormer has nine 2D primitive elements: `Point`, `Line`, `Arc`, `Circle`, `Ellipse`, `Rectangle`, `Triangle`, `Curve` and `Bezier`. In addition to those, there are two elements for drawing text and images respectively: `Text` and `Image`.
 
-Each element above has a factory method that is exposed by the Stormer object.
+Each element above has a factory method that is exposed by the `Stormer` object.
 ```js
 import Stormer from 'stormer';
 ```
@@ -67,11 +67,11 @@ tells Stormer that we intend to create a circle centered $50px$ from the left an
 
 Factory methods return an instance of the element that we can further use to tell Stormer about that element.
 
-For instance, each element implements `Element.setProps()` and `Element.setTransforms()` methods. These methods allow us to specify styles and transformations that apply to a single element.
+For instance, each element implements `Element.props` and `Element.transforms` attributes. These attributes allow us to specify styles and transformations that apply to a single element.
 
 Proceeding from our circle above, the code
 ```js
-circle.setProps()
+circle.props
   .strokeStyle('blue')
   .lineWidth(4);
 ```
@@ -81,7 +81,7 @@ The most important thing to note here is props and transforms applied to an elem
 
 For instance, let's say we decide to translate the origin point for our circle, like so:
 ```js
-circle.setTransforms()
+circle.transforms
   .translate(20, 0); 
 ```
 The code above tells Stormer to move the origin of our Canvas coordinate system to the right by $20px$ i.e. from $(0, 0)$ to $(20, 0)$. Our circle will now be drawn relative to this new origin.
@@ -90,7 +90,7 @@ Then we decide to add another element,
 ```js
 const rect = Stormer.createRectangle(10, 10, 100, 100);
 
-rect.setProps()
+rect.props
   .fillStyle('red')
   .shouldFill(true);
 ```
@@ -115,11 +115,11 @@ rect.attachTo(layerOne);
 ```
 It is important to note that detached elements will not be rendered in Stormer.
 
-One can create as many layers as needed. Layers expose `Layer.setProps()` and `Layer.setTransforms()` methods that allow setting properties and transformations that apply to all elements attached to the layer.
+One can create as many layers as needed. Layers expose `Layer.props` and `Layer.transforms` attributes that allow setting properties and transformations that apply to all elements attached to the layer.
 
 For instance, let's say all elements on `layerOne` are going to have a line width of $4px$. Instead of setting this prop on each element (which could be hundreds of elements), we set the prop on the layer.
 ```js
-layerOne.setProps()
+layerOne.props
   .lineWidth(4);
 ```
 Now `circle` and `rect` will have a line width of $4px$. Just like in elements, Stormer guarantees that props and transforms applied to one layer do not affect other layers.
@@ -129,7 +129,7 @@ In addition to grouping elements together, layers provide a stacking context in 
 ### `Stormer.Root`
 When elements and layers are created, Stormer doesn't render them immediately. In fact, creating elements is like telling Stormer we intend to render that element, but we may not render it. 
 
-To commit our intentions to render, we call `Root.render()`. The Stormer object exposes a `Stormer.createRoot()` method that we use to create our root. This method takes one required argument, which is an `id` of our canvas element. In addition, `Stormer.createRoot()` takes two optional arguments that specify the size of our canvas.
+To commit our intentions to render, we call `Root.render()`. The `Stormer` object exposes a `Stormer.createRoot()` method that we use to create our root. This method takes one required argument, which is an `id` of our canvas element. In addition, `Stormer.createRoot()` takes two optional arguments that specify the size of our canvas.
 
 In the code snippet below, we create a root and call `render()` on it (We proceed from above).
 ```js
@@ -145,7 +145,7 @@ You can think of `Root` as a Stormer representation of the canvas element. Whene
 Each call to `Root.render()` is in effect a commit. It is unlikely that one will call this method only onece. Stormer gives the developer the liberty to render at will. Whenever you feel like you are ready to commit your intentations, call render. This is so convenient especially when animating objects using a `requestAnimationFrame()` callback.
 
 ## API Reference
-The Stormer object exposes factory methods for creating root, elements and layers as documented below. This object has everything one needs to interact with the Stormer library.
+The `Stormer` object exposes factory methods for creating root, elements and layers as documented below. This object has everything one needs to interact with the Stormer library.
 
 ```js
 import Stormer from "stormer";
@@ -199,7 +199,7 @@ const txtMetrics = ctx.measureText('Hello, Canvas!');
 ```
 
 ### `Props`
-A `Props` instance is created whenever an element or a layer is created. We get access to the `Props` instance by calling `setProps()` on an element or a layer. The `Props` object exposes methods for styling and transforming the canvas context.
+A `Props` instance is created whenever an element or a layer is created. We get access to the `Props` instance by accessing the `props` attribute on an element or a layer. The `Props` object exposes methods for styling and transforming the canvas context.
 
 These methods are named after the properties of the underlying `CanvasRenderingContext2DSettings` object (except for `shouldFill()`) and for that reason, most of the content in this section has been copied over from Mozilla Developer's Network.
 
@@ -213,7 +213,7 @@ All methods of the `Props` object return the `Props` instance to enable method c
 Example:
 ```js
 // a `circle` element that we want it to be filled
-circle.setProps()
+circle.props
   .shouldFill(true);
 ```
 
@@ -272,7 +272,7 @@ circle.setProps()
 ### `Transforms`
 Just like the `Props` object, each element and layer gets an instance of the `Transforms` object upon creation. The `Transforms` object exposes methods for performing transformations on the canvas element.
 
-To get access to the `Transforms` instance, we call `setTransforms()` on an element or layer. Method calls on the Transforms object can be chained, just like `Props` method calls.
+To get access to the `Transforms` instance, we access the `transforms` attribute on an element or layer. Method calls on the `Transforms` object can be chained, just like `Props` method calls.
 
 #### **Methods**
 `translate (x: number, y: number): Transforms`
@@ -285,7 +285,7 @@ Example:
 ```js
 // say we want a `rect` element to be drawn relative to a new origin (10, 15)
 
-rect.setTransforms()
+rect.transforms
   .translate(10, 15);
 ```
 
@@ -297,7 +297,7 @@ rect.setTransforms()
 Example:
 ```js
 // say we want a `rect` element to be drawn at 45 degrees
-rect.setTransforms()
+rect.transforms
   .rotate(45);
 ```
 
@@ -310,23 +310,110 @@ rect.setTransforms()
 Example:
 ```js
 // say we want to use the familiar Cartesian coordinate system to draw a `rect` element
-rect.setTransforms()
-  .translate(0, 300) // take the origin to the bottom of the canvas
+rect.transforms
+  .translate(0, 300) // move the origin to the bottom of the canvas
   .scale(1, -1); // then flip the y-axis so that values increase going up
 ```
 
 ### `Stormer.Layer`
+#### **Factory**
+`Stormer.createLayer (): Layer`
+- The `createLayer()` method of the `Stormer` object returns a layer instance.
+
+Example:
+```js
+const layerOne = Stormer.createLayer();
+```
+
+#### **Properties**
+`props: Props` 
+- A `Props` instance used to set properties to be applied to all elements attached to a given layer.
+
+Example:
+```js
+layerOne.props
+  .strokeStyle('red');
+```
+For information about methods available on the `Props` object, read the [`Props`](#props) section above.
+
+`transforms: Transforms`
+- A `Transforms` instance used to set transformations to be applied to all elements attached to a given layer.
+
+Example:
+
+The code below causes the origin to be moved to $(10, 20)$ for all elements on `layerOne`.
+```js
+layerOne.transforms
+  .translate(10, 20);
+```
+For information about methods available on the `Transforms` object, read the [`Transforms`](#transforms) section above.
+
+**Note:** `props` and `transforms` that are set on an element take precedence over `props` and `transforms` set on a layer. Think cascades.
+
+#### **Methods**
+`addElement (element: Element): Layer`
+- `element` - An element instance to be added to the layer.
+- Returns the layer instance to allow method call chaining.
+
+**Note:** Alternatively, you can add an element to a layer by using the `attachTo()` method of the element, passing layer as an argument. See [`Element`](#stormerelement-1) section below.
+
+Example:
+
+The code below adds `rect` and `circle` elements to `layerOne`
+```js
+layerOne
+  .addElement(rect)
+  .addElement(circle);
+```
+
+`removeElement (element: Element): Layer`
+- `element` - An element instance to be removed from the layer.
+- Returns the layer instance to allow method call chaining.
+
+Example:
+
+The code below removes a `circle` element from `layerOne`
+```js
+layerOne.removeElement(circle);
+```
+`clearLayer (): Layer`
+- Removes all elements on this layer and returns the layer instance.
+
+Example:
+
+The code below removes all elements previously added to `layerOne`
+```js
+layerOne.clearLayer();
+```
+
 ### `Stormer.Element`
-#### `Stormer.Point`
-#### `Stormer.Line`
-#### `Stormer.Rectangle`
-#### `Stormer.Circle`
-#### `Stormer.Arc`
-#### `Stormer.Ellipse`
-#### `Stormer.Curve`
-#### `Stormer.Bezier`
-#### `Stormer.Text`
-#### `Stormer.Image`
+#### **Factory**
+`Stormer.createPoint (): Point`
+
+`Stormer.createLine (): Line`
+
+`Stormer.createRectangle (): Rectangle`
+
+`Stormer.createCircle (): Circle`
+
+`Stormer.createArc (): Arc`
+
+`Stormer.createEllipse (): Ellipse`
+
+`Stormer.createCurve (): Curve`
+
+`Stormer.createBezier (): Bezier`
+
+`Stormer.createText (): Text`
+
+`Stormer.createImage (): Image`
+#### **Properties**
+`props: Props`
+
+`transforms: Transforms`
+
+#### Methods
+`attachTo (layer: Layer): Element`
 
 ## Miscellaneous
 ### Stormer with React

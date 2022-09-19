@@ -21,12 +21,4 @@ export default class Line {
     layer.addElement(this);
     return this;
   }
-
-  setTransforms (): Transforms {
-    return this.transforms;
-  }
-
-  setProps (): Props {
-    return this.props;
-  }
 }

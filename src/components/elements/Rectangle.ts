@@ -22,12 +22,4 @@ export default class Rectangle {
     layer.addElement(this);
     return this;
   }
-
-  setTransforms (): Transforms {
-    return this.transforms;
-  }
-
-  setProps (): Props {
-    return this.props;
-  }
 }

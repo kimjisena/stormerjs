@@ -62,6 +62,4 @@ export default interface Element {
 
   // All Elements must implement these methods
   attachTo (layer: Layer): Element;
-  setTransforms (): Transforms;
-  setProps (): Props;
 }

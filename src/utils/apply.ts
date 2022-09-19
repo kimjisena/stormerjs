@@ -29,7 +29,7 @@ function applyTransforms (element: Element, ctx: CanvasRenderingContext2D) {
 
 function syncLayer (layer: Layer) {
   let layerFill = layer.props.fill;
-  let layerProps = layer.props.propsMap
+  let layerProps = layer.props.propsMap;
 
   for (let element of layer.elements) {
     // don't override the fill property if it is set on element
