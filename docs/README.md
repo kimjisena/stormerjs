@@ -438,26 +438,100 @@ layerOne.clearLayer();
 
 ### `Stormer.Element`
 #### **Factory**
-`Stormer.createPoint (): Point`
+`Stormer.createPoint (x: number, y: number): Point`
+- `x` - x-axis coordinate of the point.
+- `y` - y-axis coordinate of the point.
+- Returns a new point instance.
 
+`Stormer.createLine (...coords: number[]): Line`
+- `coords` - A list of coordinate pairs.
+- Returns a new line instance.
 
-`Stormer.createLine (): Line`
+`Stormer.createRectangle (x: number, y: number, width: number, height: number): Rectangle`
+- `x` - x-axis coordinate of the top-left corner of the rectangle.
+- `y` - y-axis coordinate of the top-left corner of the rectangle.
+- `width` - Width of the rectangle element.
+- `height` - Height of the rectangle element.
+- Returns a new rectangle instance.
 
-`Stormer.createRectangle (): Rectangle`
+`Stormer.createTriangle(...coords: number[]): Triangle`
+- `coords` - A list of 3 coordinate pairs.
+- Returns a new triangle instance.
 
-`Stormer.createCircle (): Circle`
+`Stormer.createCircle (x: number, y: number, rad: number): Circle`
+- `x` - x-axis coordinate of the center of the circle.
+- `y` - y-axis coordinate of the center of the circle.
+- `rad` - Radius of the circle.
+- Returns a new circle instance.
 
-`Stormer.createArc (): Arc`
+`Stormer.createArc (x: number, y: number, rad: number, startAngle: number, endAngle: number, counterclockwise?: boolean): Arc`
+- `x` - x-axis coordinate of the center of the circle forming the arc.
+- `y` - y-axis coordinate of the center of the circle forming the arc.
+- `rad` - Radius of the circle forming the arc.
+- `startAngle` - Angle in degrees from where to start the arc.
+- `endAngle` - Angle in degrees to which the arc ends.
+- `counterclockwise` - Direction for measuring angles (Optional). Defaults to `false`.
+- Returns a new arc instance.
 
-`Stormer.createEllipse (): Ellipse`
+`Stormer.createEllipse (x: number, y: number, width: number, height: number): Ellipse`
+- `x` - x-axis coordinate of the top-left corner of the bounding rectangle.
+- `y` - y-axis coordinate of the top-left corner of the bounding rectangle.
+- `width` - Width of the bounding rectangle.
+- `height` - Height of the bounding rectangle.
+- Returns a new Ellipse instance.
 
-`Stormer.createCurve (): Curve`
+`Stormer.createCurve (anchorX: number, anchorY: number, fromX: number, fromY: number, toX: number, toY: number): Curve`
+- `anchorX` - x-axis coordinate of the anchor point.
+- `anchorY` - y-axis coordinate of the anchor point.
+- `fromX` - x-axis coordinate of the point from which the curve should be drawn.
+- `fromY` - y-axis coordinate of the point from which the curve should be drawn.
+- `toX` - x-axis coordinate of the point to which the curve should be drawn.
+- `toY` - y-axis coordinate of the point to which the curve should be drawn.
+- Returns a new quadratic curve instance.
 
-`Stormer.createBezier (): Bezier`
+`Stormer.createBezier (anchorOneX: number, anchorOneY: number, anchorTwoX: number, anchorTwoY: number, fromX: number, fromY: number, toX: number, toY: number): Bezier`
+- `anchorOneX` - x-axis coordinate of the first anchor point.
+- `anchorOneY` - y-axis coordinate of the first anchor point.
+- `anchorTwoX` - x-axis coordinate of the second anchor point.
+- `anchorTwoY` - y-axis coordinate of the second anchor point.
+- `fromX` - x-axis coordinate of the point from which the curve should be drawn.
+- `fromY` - y-axis coordinate of the point from which the curve should be drawn.
+- `toX` - x-axis coordinate of the point to which the curve should be drawn.
+- `toY` - y-axis coordinate of the point to which the curve should be drawn.
+- Returns a new cubic bezier curve instance.
 
-`Stormer.createText (): Text`
+`Stormer.createText (text: string, x: number, y: number, maxWidth?: number): Text`
+- `text` - A string specifying the text string to render into the context. The text is rendered using the settings specified by `font`, `textAlign`, `textBaseline`, and `direction`.
+- `x` - x-axis coordinate of the point at which to begin drawing the text, in pixels.
+- `y` - y-axis coordinate of the baseline on which to begin drawing the text, in pixels.
+- `maxWidth` - The maximum number of pixels wide the text may be once rendered. If not specified, there is no limit to the width of the text. (Optional)
+- Returns a new text element instance.
 
-`Stormer.createImage (): Image`
+`Stormer.createImage (url: string,  dx: number,  dy: number): Image`
+- `url` - The URL of the image resource.
+- `dx` - x-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+- `dy` - y-axis coordinate in the destination canvas at which to place the top-left corner of the source image. 
+- Returns a new image element instance.
+
+`Stormer.createImage (url: string, dx: number, dy: number, dw: number, dh: number): Image `
+- `url` - URL of the image resource.
+- `dx` - x-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+- `dy` - y-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+- `dw` - Width to draw the image in the destination canvas. This allows scaling of the drawn image. 
+- `dh` - Height to draw the image in the destination canvas. This allows scaling of the drawn image. 
+- Returns a new image element instance.
+
+`Stormer.createImage (url: string, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): Image`
+- `url` - URL of the image resource.
+- `sx` - x-axis coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context. 
+- `sy` - y-axis coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context.
+- `sw` - Width of the sub-rectangle of the source image to draw into the destination context.
+- `sh` - Height of the sub-rectangle of the source image to draw into the destination context.
+- `dx` - x-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+- `dy` - y-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+- `dw` - Width to draw the image in the destination canvas. This allows scaling of the drawn image. 
+- `dh` - Height to draw the image in the destination canvas. This allows scaling of the drawn image.
+- Returns a new image element instance.
 
 #### **Properties**
 `props: Props` 

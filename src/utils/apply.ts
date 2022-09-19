@@ -33,13 +33,13 @@ function syncLayer (layer: Layer) {
 
   for (let element of layer.elements) {
     // don't override the fill property if it is set on element
-    if (layerFill && !(element.setProps().strictNotFill)) {
-      element.setProps().shouldFill(layerFill);
+    if (layerFill && !(element.props.strictNotFill)) {
+      element.props.shouldFill(layerFill);
     }
 
     for (let [key, value] of layerProps) {
-      if (!element.setProps().propsMap.has(key)) {
-        element.setProps()[key](value);
+      if (!element.props.propsMap.has(key)) {
+        element.props[key](value);
       }
     }
   }
